@@ -1,10 +1,7 @@
 const initialState = {
   loggedIn: false,
-  loginError: 'tim',
+  loginError: false,
   registerError: false,
-  isCompany: true,
-  is_company: null,
-  counter: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,12 +12,11 @@ const reducer = (state = initialState, action) => {
         loggedIn: true,
         loginError: false,
         registerError: false,
-        is_company: action.is_company,
       };
     case 'REGISTER':
       return {
         ...state,
-        loginError: 'cook',
+        loginError: false,
         registerError: false,
       };
     case 'LOGIN_ERROR':
@@ -33,21 +29,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         registerError: true,
       };
-    case 'COMPANY_TOGGLE':
-      return {
-        ...state,
-        isCompany: !state.isCompany,
-      };
     case 'LOGOUT':
       return {
         ...state,
         loggedIn: false,
-      };
-    case 'INCREMENT':
-      return {
-        ...state,
-        loginError: 'cook',
-        counter: state.counter + 1,
       };
     default:
       return {

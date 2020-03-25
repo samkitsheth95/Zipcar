@@ -1,14 +1,29 @@
+import { useHistory } from 'react-router-dom';
+import request from '../../helpers/communication';
+
+//let history = useHistory();
+
 const register = (e) => async (dispatch) => {
-  setTimeout(() => {
+  //  console.log(e.target)
+  request.sendPost('auth/register', e.target).then(() => {
     dispatch({ type: 'REGISTER' });
-  }, 1000);
+    //history.push('/login');
+  }, () => {
+    dispatch({ type: 'REGISTER_ERROR' });
+  });
 };
 
-const increment = () => ({
-  type: 'INCREMENT',
-});
+const login = (e) => async (dispatch) => {
+  //  console.log(e.target)
+  request.sendPost('auth/login', e.target).then(() => {
+    dispatch({ type: 'LOGIN' });
+    //history.push('/login');
+  }, () => {
+    dispatch({ type: 'LOGIN_ERROR' });
+  });
+};
 
 
 export default {
-  register, increment,
+  register, login,
 };
