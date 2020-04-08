@@ -18,19 +18,11 @@ function sendPost(route, data = null) {
       });
     }
   }
-  // Display the key/value pairs
-for(var pair of formData.entries()) {
-  console.log(pair[0]+ ', '+ pair[1]); 
-} 
-  return axios.post(process.env.REACT_APP_SERVER_ROOT + route, formData, config)
-    .then((response) => response)
-    .catch((error) => error);
+  return axios.post(process.env.REACT_APP_SERVER_ROOT + route, formData, config);
 }
 
 function get(route) {
-  return axios.get(process.env.REACT_APP_SERVER_ROOT + route, config)
-    .then((response) => response)
-    .catch((error) => error);
+  return axios.get(process.env.REACT_APP_SERVER_ROOT + route, config);
 }
 
 export default {

@@ -4,7 +4,6 @@ const multer = require('multer');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const passport = require('passport');
-//const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
@@ -21,7 +20,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false },
 }));
-//app.use(bodyParser.json());
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(multer().any());

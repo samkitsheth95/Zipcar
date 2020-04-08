@@ -31,15 +31,13 @@ function logoutHandler(req, res) {
 }
 
 function registerHandler(req, res) {
-  console.log({ ...req.body });
   bcrypt.hash(req.body.password, 10).then((hash) => {
     User.create({
       ...req.body,
       password: hash,
     }).then(() => {
       res.send({ res: 'Success' });
-    }, (ERR) => {
-      console.log(ERR);
+    }, () => {
       res.status(400).send({ res: 'Failed' });
     });
   });

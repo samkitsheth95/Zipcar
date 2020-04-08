@@ -2,6 +2,7 @@ const initialState = {
   loggedIn: false,
   loginError: false,
   registerError: false,
+  isAdmin: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +34,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: false,
+      };
+    case 'ISADMIN':
+      return {
+        ...state,
+        isAdmin: !state.isAdmin,
       };
     default:
       return {
