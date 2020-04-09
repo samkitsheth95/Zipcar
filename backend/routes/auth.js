@@ -16,7 +16,7 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 app.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send({ success: 'true' });
+  res.send({ success: 'true', isAdmin: req.user.isAdmin });
 });
 
 app.post('/logged_in', isLoggedIn);

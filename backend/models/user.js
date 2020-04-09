@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    isAdmin: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false,

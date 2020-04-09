@@ -32,7 +32,7 @@ function Register() {
           </div>
           <div className="form-check form-check-inline">
             <label className="form-check-label" htmlFor="companyRadio0">
-              <input className="form-check-input" onChange={() => { dispatch(authAction.isadmin()); }} type="radio" name="is_company" id="companyRadio0" value="0" checked={!auth.isAdmin} />
+              <input className="form-check-input" onChange={() => { dispatch(authAction.isadmin()); }} type="radio" name="isAdmin" id="companyRadio0" value="0" checked={!auth.isAdmin} />
               No
             </label>
           </div>

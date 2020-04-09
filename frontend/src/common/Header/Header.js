@@ -23,10 +23,30 @@ function Header() {
             </li>
           </ul>
           )}
+          { auth.loggedIn && !auth.isAdmin && (
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/userHome">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/userProfile">Profile</NavLink>
+            </li>
+          </ul>
+          )}
+          { auth.loggedIn && auth.isAdmin && (
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/adminHome">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/dashboard">Dashboard</NavLink>
+            </li>
+          </ul>
+          )}
           { auth.loggedIn && (
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink exact className="nav-link" activeClassName="active" to="/" onClick={() => { dispatch(authAction.logout()); }}>Logout</NavLink>
+              <NavLink exact className="nav-link" activeClassName="active" to="/" onClick={() => { dispatch(authAction.logout(auth.isAdmin)); }}>Logout</NavLink>
             </li>
           </ul>
           )}

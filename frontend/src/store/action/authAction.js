@@ -11,16 +11,21 @@ const register = (e, history) => (dispatch) => {
 
 const login = (e, history) => (dispatch) => {
   request.sendPost('auth/login', e.target).then((resp) => {
-    console.log(resp);
+    if (resp.data.isAdmin) dispatch({ type: 'ISADMIN' });
     dispatch({ type: 'LOGIN' });
-    history.push('/');
+    if (resp.data.isAdmin) {
+      history.push('/adminHome');
+    } else {
+      history.push('/userHome');
+    }
   }, () => {
     dispatch({ type: 'LOGIN_ERROR' });
   });
 };
 
-const logout = () => (dispatch) => {
+const logout = (isAdmin) => (dispatch) => {
   request.get('auth/logout').then(() => {
+    if (isAdmin) dispatch({ type: 'ISADMIN' });
     dispatch({ type: 'LOGOUT' });
   });
 };
