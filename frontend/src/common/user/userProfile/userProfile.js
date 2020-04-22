@@ -1,166 +1,187 @@
-import React from "react";
-import Header from "../../Header/Header";
+import React from 'react';
+import Header from '../../Header/Header';
 
 function userProfile() {
   return (
     <div>
       <Header />
-      <img
-        src="zipcar.png"
-        className="float-left"
-        alt="Responsive Image"
-        width="240"
-        height="126"
-      ></img>
-      <form>
-        <div className="form-group row">
-          <label for="staticName" className="col-sm-1 col-form-label">
-            Name:
-          </label>
-          <div className="col-sm-2">
-            <input
-              type="text"
-              readonly
-              className="form-control-plaintext"
-              id="staticName"
-              value="Karan"
-            ></input>
+      <div className="USERPROFILE text-center vertical-align">
+        <div className="card">
+          <div className="jumbotron text-center">
+            <div className="card-header"><h4>Basic Details</h4></div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <b> Name: </b>
+                Karan Patel
+              </li>
+              <li className="list-group-item">
+                <b>Email: </b>
+                karan@gmail.com
+              </li>
+              <li className="list-group-item">
+                <b>Address: </b>
+                1306 The Alameda, San Jose, CA, USA
+              </li>
+            </ul>
+            <div className="card-header"><h4>Card Details</h4></div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <b>Card Holders Name: </b>
+                Karan Patel
+              </li>
+              <li className="list-group-item">
+                <b>Card Number: </b>
+                1234567890123456
+              </li>
+              <li className="list-group-item">
+                <b>Expiry Date: </b>
+                04/2020
+              </li>
+              <li className="list-group-item">
+                <b>CVV: </b>
+                123
+              </li>
+            </ul>
+          </div>
+          <div className="button">
+            <button
+              type="button"
+              className="btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              Edit
+            </button>
           </div>
         </div>
-        <div className="form-group row">
-          <label for="staticEmail" className="col-sm-1   col-form-label">
-            Email:
-          </label>
-          <div className="col-sm-2">
-            <input
-              type="email"
-              readonly
-              className="form-control-plaintext"
-              id="staticEmail"
-              value="karan@gmail.com"
-            ></input>
-          </div>
-        </div>
-        &nbsp;
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <label for="LicenseState" className="col-sm-5   col-form-label">
-              <h5>Driver License State: </h5>
-            </label>
-            <div className="col">
-              <select className="form-control">
-                <option>CA</option>
-                <option>NY</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <label for="LicenseNumber" className="col-sm-5   col-form-label">
-              <h5>Driver License Number:</h5>
-            </label>
-            <div className="col">
-              <input
-                type="number"
-                className="form-control"
-                id="exampleFormControlInput1"
-                placeholder="123456789"
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <label for="address" className="col-sm-5   col-form-label">
-              <h5>Address:</h5>
-            </label>
-            <div className="col">
-              <input
-                type="text"
-                className="form-control"
-                id="address"
-                placeholder="1306 The Alameda"
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <label for="mobile" className="col-sm-5   col-form-label">
-              <h5>Mobile Number:</h5>
-            </label>
-            <div className="col">
-              <input
-                type="number"
-                className="form-control"
-                id="mobile"
-                placeholder="1234567890"
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <legend>Payment:</legend>
-            <label for="CCname" className="col-sm-3   control-label">
-              Card Holder's Name:
-            </label>
-            <div className="col-sm-5">
-              <input
-                type="text"
-                className="form-control"
-                id="CCname"
-                placeholder="ABC XYZ"
-                pattern="\w+ \w+.*"
-                title="Fill your first and last name"
-                required
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          {/* <div className="col-sm-10 offset-sm-2"> */}
-            <label for="CCnumber" className="control-label">
-              Card Number:
-            </label>
-            <div className="controls">
-              <div className="row-fluid">
-                <div className="span3">
-                  <input
-                    type="text"
-                    class="input-block-level"
-                    autocomplete="off"
-                    maxlength="4"
-                    pattern="\d{4}"
-                    title="First four digits"
-                    required
-                  ></input>
+        <div className="modal fade" id="myModal" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Edit Details</h4>
+                <button type="button" className="close" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="form-group row ">
+                  <div className="col">
+                    <select className="form-control" placeholder="Driver License State">
+                      <option value="" disabled selected>Driver License State</option>
+                      <option value="CA">CA</option>
+                      <option value="NY">NY</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="span3">
-                  <input
-                    type="text"
-                    class="input-block-level"
-                    autocomplete="off"
-                    maxlength="4"
-                    pattern="\d{4}"
-                    title="Second four digits"
-                    required
-                  ></input>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="exampleFormControlInput1"
+                      placeholder="Driver License Number"
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address"
+                      placeholder="Address"
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="mobile"
+                      placeholder="Mobile Number"
+                      maxLength="16"
+                      pattern="\d{16}"
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="CCname"
+                      placeholder="Card Holders Name"
+                      pattern="\w+ \w+.*"
+                      title="Fill your first and last name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="CCnumber"
+                      placeholder="Card Number"
+                      autoComplete="off"
+                      maxLength="16"
+                      pattern="\d{16}"
+                      title="Fill your 16 digit card name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <div className="form-group">
+                      <div className="input-group">
+                        <input
+                          type="number"
+                          className="form-control"
+                          placeholder="Expiry Month"
+                          maxLength="2"
+                          pattern="\d{2}"
+                        />
+                        <input
+                          type="number"
+                          className="form-control"
+                          placeholder="Expiry Year"
+                          maxLength="4"
+                          pattern="\d{4}"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="CCnumber"
+                      placeholder="CVV"
+                      autoComplete="off"
+                      maxLength="16"
+                      pattern="\d{16}"
+                      title="Fill your 16 digit card name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <div className="col">
+                    <button type="submit" className="btn btn-success">
+                      Save
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        {/* </div> */}
-        &nbsp;
-        <div className="form-group row">
-          <div className="col-sm-10 offset-sm-2">
-            <button type="submit" className="btn btn-success">
-              Save
-            </button>
-          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

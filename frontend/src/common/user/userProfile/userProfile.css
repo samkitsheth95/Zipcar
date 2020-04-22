@@ -1,0 +1,14 @@
+.USERPROFILE.vertical-align {
+    display: flex;
+    align-items: center;
+    height: 80vh;
+  }
+
+  .USERPROFILE .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+
+
