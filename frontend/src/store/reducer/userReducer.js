@@ -7,12 +7,11 @@ const reducer = (state = initialState, action) => {
     case 'USERUPDATE':
       return {
         ...state,
+        user: {}
       };
     case 'USER':
       return {
         ...state,
-        loginError: false,
-        registerError: false,
       };
     default:
       return {

@@ -73,9 +73,31 @@ function UserProfile() {
               </div>
               <div className="modal-body">
                 <form className="form-signin" onSubmit={(e) => { e.preventDefault(); dispatch(userAction.userupdate(e, history)); }}>
+                  <div className="form-group row">
+                    <div className="col">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        placeholder="Name"
+                        name="name"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Email Address"
+                        name="email"
+                      />
+                    </div>
+                  </div>
                   <div className="form-group row ">
                     <div className="col">
-                      <select className="form-control" placeholder="Driver License State">
+                      <select className="form-control" placeholder="Driver License State" name="driverstate">
                         <option value="" disabled selected>Driver License State</option>
                         <option value="CA">CA</option>
                         <option value="NY">NY</option>
@@ -89,6 +111,7 @@ function UserProfile() {
                         className="form-control"
                         id="exampleFormControlInput1"
                         placeholder="Driver License Number"
+                        name="drivernumber"
                       />
                     </div>
                   </div>
@@ -99,6 +122,7 @@ function UserProfile() {
                         className="form-control"
                         id="address"
                         placeholder="Address"
+                        name="address"
                       />
                     </div>
                   </div>
@@ -107,10 +131,11 @@ function UserProfile() {
                       <input
                         type="number"
                         className="form-control"
-                        id="mobile"
+                        id="phone"
                         placeholder="Mobile Number"
-                        maxLength="16"
-                        pattern="\d{16}"
+                        maxLength="10"
+                        pattern="\d{10}"
+                        name="phone"
                       />
                     </div>
                   </div>
@@ -123,6 +148,7 @@ function UserProfile() {
                         placeholder="Card Holders Name"
                         pattern="\w+ \w+.*"
                         title="Fill your first and last name"
+                        name="ccname"
                         required
                       />
                     </div>
@@ -134,9 +160,10 @@ function UserProfile() {
                         className="form-control"
                         id="CCnumber"
                         placeholder="Card Number"
+                        name="ccnumber"
                         autoComplete="off"
-                        maxLength="16"
-                        pattern="\d{16}"
+                        maxLength="19"
+                        pattern="\d{14,19}"
                         title="Fill your 16 digit card name"
                         required
                       />
@@ -150,15 +177,19 @@ function UserProfile() {
                             type="number"
                             className="form-control"
                             placeholder="Expiry Month"
+                            name="expirymonth"
                             maxLength="2"
                             pattern="\d{2}"
+                            required
                           />
                           <input
                             type="number"
                             className="form-control"
                             placeholder="Expiry Year"
+                            name="expiryyear"
                             maxLength="4"
                             pattern="\d{4}"
+                            required
                           />
                         </div>
                       </div>
@@ -174,8 +205,8 @@ function UserProfile() {
                         placeholder="CVV"
                         autoComplete="off"
                         maxLength="4"
-                        pattern="\d{4}"
-                        title="Fill your 16 digit card name"
+                        pattern="\d{3,4}"
+                        title="Fill your 3 or 4 digit CVV"
                         required
                       />
                     </div>

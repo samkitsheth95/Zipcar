@@ -21,11 +21,48 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY(),
       allowNull: true,
     },
+    driverstate: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+    },
     phone: {
       type: DataTypes.INTEGER(),
       allowNull: true,
     },
+    drivernumber: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    phone: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
+    ccname: {
+      type: DataTypes.STRING(),
+      allowNull: true,
+    },
+    ccnumber: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
+    expirymonth: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
+    expiryyear: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
+    cvv: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
   });
+  
   return {
     User,
   };
