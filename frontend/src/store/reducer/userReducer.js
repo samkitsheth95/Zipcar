@@ -1,5 +1,6 @@
 const initialState = {
   user: {},
+  userUpdate: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -7,11 +8,12 @@ const reducer = (state = initialState, action) => {
     case 'USERUPDATE':
       return {
         ...state,
-        user: {}
+        userUpdate: !state.userUpdate,
       };
-    case 'USER':
+    case 'GETUSER':
       return {
         ...state,
+        user: { ...action.payload },
       };
     default:
       return {

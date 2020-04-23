@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Header from '../../Header/Header';
 import userAction from '../../../store/action/userAction';
 import './UserProfile.css';
 
 function UserProfile() {
-  //const auth = useSelector((state) => state.authReducer);
+  const user = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-  const history = useHistory();
+  useEffect(() => {
+    dispatch(userAction.getuser());
+  }, [dispatch, user.userUpdate]);
   return (
     <div>
       <Header />
@@ -20,7 +21,7 @@ function UserProfile() {
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <b> Name: </b>
-                Karan Patel
+                {user.name}
               </li>
               <li className="list-group-item">
                 <b>Email: </b>
@@ -72,7 +73,7 @@ function UserProfile() {
                 </button>
               </div>
               <div className="modal-body">
-                <form className="form-signin" onSubmit={(e) => { e.preventDefault(); dispatch(userAction.userupdate(e, history)); }}>
+                <form className="form-signin" onSubmit={(e) => { e.preventDefault(); dispatch(userAction.userupdate(e)); }}>
                   <div className="form-group row">
                     <div className="col">
                       <input
@@ -89,9 +90,9 @@ function UserProfile() {
                       <input
                         type="email"
                         className="form-control"
-                        id="email"
+
                         placeholder="Email Address"
-                        name="email"
+
                       />
                     </div>
                   </div>

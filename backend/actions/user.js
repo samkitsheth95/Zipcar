@@ -7,11 +7,27 @@ function updateHandler(req, res) {
     where: {
       id: req.user.id,
     },
+  }).then((user) => {
+    res.status(200).send(user);
+  },
+  (err) => {
+    res.status(400).send(err);
   });
-  res.status(200).send(req.body);
 }
 
+function getUserHandler(req, res) {
+  User.findOne({
+    where: {
+      id: req.user.id,
+    },
+  }).then((user) => {
+    res.status(200).send(user);
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
 
 module.exports = {
-  updateHandler,
+  updateHandler, getUserHandler,
 };

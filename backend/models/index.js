@@ -10,6 +10,6 @@ const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASSWORD, {
 });
 const userMoldels = require('./user')(sequelize, Sequelize);
 
-sequelize.sync({ alter: true });
+// sequelize.sync({ alter: true });
 
 module.exports = userMoldels;
