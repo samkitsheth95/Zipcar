@@ -30,10 +30,16 @@ const logout = (isAdmin) => (dispatch) => {
   });
 };
 
+const isioggedin = () => (dispatch) => {
+  request.get('auth/logged_in').then((req) => {
+    if (req.data.logged_in) dispatch({ type: 'LOGIN' });
+  });
+};
+
 const isadmin = () => (dispatch) => {
   dispatch({ type: 'ISADMIN' });
 };
 
 export default {
-  register, login, logout, isadmin,
+  register, login, logout, isadmin, isioggedin,
 };

@@ -21,7 +21,7 @@ function Register() {
           </div>
           )}
           <input type="text" name="name" id="inputName" className="form-control" placeholder="Name" required />
-          <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email Address" required />
+          <input type="text" name="username" id="inputUsername" className="form-control" placeholder="username" required />
           <input type="password" name="password" id="inputPass" className="form-control" placeholder="Password" required />
           <span className="mr-5">Are you a admin?</span>
           <div className="form-check form-check-inline">

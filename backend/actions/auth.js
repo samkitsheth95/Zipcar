@@ -4,7 +4,7 @@ const { User } = require('../models/index');
 function loginHandler(req, username, password, done) {
   User.findOne({
     where: {
-      email: username,
+      username,
     },
   }).then((user) => {
     if (!user) done(null, false, { message: 'Incorrect username or password.' });
@@ -48,7 +48,7 @@ function registerHandler(req, res) {
 }
 
 function isLoggedIn(req, res) {
-  res.send({ logged_in: !!req.user, is_company: req.user && req.user.is_company });
+  res.send({ logged_in: !!req.user, is_admin: req.user && req.user.isAdmin });
 }
 
 module.exports = {

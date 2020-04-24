@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
 import {
   BrowserRouter as Router, Route, Switch,
@@ -10,8 +11,14 @@ import userHome from './common/user/userHome/userHome';
 import userProfile from './common/user/UserProfile/UserProfile';
 import adminHome from './common/admin/adminHome/adminHome';
 import dashboard from './common/admin/adminDashboard/dashboard';
+import authAction from './store/action/authAction';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authAction.isioggedin());
+  }, [dispatch]);
+
   return (
     <Router>
       <Switch>

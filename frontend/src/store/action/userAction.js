@@ -1,7 +1,9 @@
+/* global $ */
 import request from '../../helpers/communication';
 
 const userupdate = (e) => (dispatch) => {
   request.sendPost('user/update', e.target).then(() => {
+    $('.modal').modal('hide');
     dispatch({ type: 'USERUPDATE' });
   }, () => {
     // dispatch({ type: 'ERROR' });

@@ -11,7 +11,7 @@ function UserProfile() {
   // console.log(userdata.user);
   useEffect(() => {
     dispatch(userAction.getuser());
-  }, [userdata.userUpdate]);
+  }, [dispatch, userdata.userUpdate]);
 
   return (
     <div>
@@ -105,8 +105,10 @@ function UserProfile() {
                       <div className="col">
                         <input
                           type="email"
+                          id="email"
                           className="form-control"
                           placeholder="Email Address"
+                          name="email"
                         />
                       </div>
                     </div>

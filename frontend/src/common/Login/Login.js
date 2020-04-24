@@ -21,7 +21,7 @@ function Login() {
             Invalid Username/Password
           </div>
           )}
-          <input type="email" name="username" id="inputEmail" className="form-control" placeholder="Email Address" required />
+          <input type="username" name="username" id="inputUsername" className="form-control" placeholder="Username" required />
           <input type="password" name="password" id="inputPass" className="form-control" placeholder="Password" required />
           <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign In</button>
         </form>

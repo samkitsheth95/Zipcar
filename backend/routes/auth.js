@@ -19,7 +19,7 @@ app.post('/login', passport.authenticate('local'), (req, res) => {
   res.send({ success: 'true', isAdmin: req.user.isAdmin });
 });
 
-app.post('/logged_in', isLoggedIn);
+app.get('/logged_in', isLoggedIn);
 
 app.get('/logout', logoutHandler);
 
