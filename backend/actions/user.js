@@ -1,6 +1,7 @@
 const { User } = require('../models/index');
 
 function updateHandler(req, res) {
+  console.log(...req.body);
   User.update({
     ...req.body,
   }, {

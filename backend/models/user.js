@@ -30,15 +30,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     drivernumber: {
-      type: DataTypes.INTEGER(),
+      type: DataTypes.BIGINT(),
       allowNull: true,
     },
     address: {
       type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    phone: {
-      type: DataTypes.INTEGER(),
       allowNull: true,
     },
     ccname: {
@@ -46,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     ccnumber: {
-      type: DataTypes.INTEGER(),
+      type: DataTypes.BIGINT(),
       allowNull: true,
     },
     expirymonth: {
@@ -62,7 +58,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   });
-  
   return {
     User,
   };
