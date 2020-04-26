@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../Header/Header';
-import userAction from '../../../store/action/userAction';
+import Header from '../../common/Header/Header';
+import userAction from '../../store/action/userAction';
 import './UserProfile.css';
 
 function UserProfile() {

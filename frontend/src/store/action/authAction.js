@@ -10,10 +10,10 @@ const register = (e, history) => (dispatch) => {
 };
 
 const login = (e, history) => (dispatch) => {
-  request.sendPost('auth/login', e.target).then((resp) => {
-    if (resp.data.isAdmin) dispatch({ type: 'ISADMIN' });
+  request.sendPost('auth/login', e.target).then((res) => {
+    if (res.data.isAdmin) dispatch({ type: 'ISADMIN' });
     dispatch({ type: 'LOGIN' });
-    if (resp.data.isAdmin) {
+    if (res.data.isAdmin) {
       history.push('/adminHome');
     } else {
       history.push('/userHome');
@@ -31,8 +31,9 @@ const logout = (isAdmin) => (dispatch) => {
 };
 
 const isioggedin = () => (dispatch) => {
-  request.get('auth/logged_in').then((req) => {
-    if (req.data.logged_in) dispatch({ type: 'LOGIN' });
+  request.get('auth/logged_in').then((res) => {
+    if (res.data.logged_in) dispatch({ type: 'LOGIN' });
+    if (res.data.isAdmin) dispatch({ type: 'ISADMIN' });
   });
 };
 

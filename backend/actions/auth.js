@@ -48,7 +48,7 @@ function registerHandler(req, res) {
 }
 
 function isLoggedIn(req, res) {
-  res.send({ logged_in: !!req.user, is_admin: req.user && req.user.isAdmin });
+  res.send({ logged_in: !!req.user, isAdmin: req.user && req.user.isAdmin });
 }
 
 module.exports = {
