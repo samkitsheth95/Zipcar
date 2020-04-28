@@ -1,17 +1,17 @@
-.LOCATION .ed-del-icon {
+.VEHICLETYPE .ed-del-icon {
     cursor: pointer;
     float: right;
     color: blue;
     size: 25px;
   }
 
-.LOCATION .ed-edit-icon {
+.VEHICLETYPE .ed-edit-icon {
     cursor: pointer;
     float: left;    
     color: red;
     font-size: 23px;
   }
 
-.LOCATION .card-loca {
+.VEHICLETYPE .card-loca {
     margin-top: 16px;
   }

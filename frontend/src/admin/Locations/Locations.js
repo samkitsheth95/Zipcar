@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import adminAction from '../../store/action/adminActions';
 import Header from '../../common/Header/Header';
@@ -7,25 +7,30 @@ import './Location.css';
 function Locations() {
   const adminLocations = useSelector((state) => state.adminReducer.location);
   const isaddLocations = useSelector(
-    (state) => state.adminReducer.locationUpdate
+    (state) => state.adminReducer.locationUpdate,
   );
   const loggedIn = useSelector((state) => state.authReducer.loggedIn);
   const isAdmin = useSelector((state) => state.authReducer.isAdmin);
+  const [addDelete, setaddDel] = useState(0);
+  const [editlocation, seteditloc] = useState(1);
+  // console.log(addDelete);
+  // console.log(editlocation);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(adminAction.getlocations());
-  }, [dispatch, isaddLocations]);
+  }, [dispatch, isaddLocations, seteditloc]);
 
   return (
-    <div>
+    <div className="LOCATION">
       <Header />
       {loggedIn && isAdmin && (
-        <div>
+        <div className="container">
           <br />
           <div className="button text-center">
             <button
               type="button"
               className="btn btn-info btn-lg "
+              onClick={() => { setaddDel(true); seteditloc({}); }}
               data-toggle="modal"
               data-target="#myModal"
             >
@@ -37,7 +42,7 @@ function Locations() {
             <div className="row">
               {adminLocations.map((location) => (
                 <div key={location.id} className="col-sm-3">
-                  <div className="card-loca card">
+                  <div className="card-loca card shadow-sm">
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
@@ -54,20 +59,18 @@ function Locations() {
                       </ul>
                       <br />
                       <span
-                        className="ed-del-icon"
+                        className="ed-edit-icon"
                         tabIndex="0"
-                        onClick={() => {
-                          dispatch(adminAction.deletelocation(location.id));
-                        }}
-                        onKeyDown={() => {
-                          dispatch(adminAction.deletelocation(location.id));
-                        }}
+                        onClick={() => { setaddDel(false); seteditloc(location); }}
+                        onKeyDown={() => { setaddDel(false); seteditloc(location); }}
+                        data-toggle="modal"
+                        data-target="#myModal"
                         role="button"
                       >
                         &#9998;
                       </span>
                       <span
-                        className="ed-edit-icon"
+                        className="ed-del-icon"
                         tabIndex="0"
                         onClick={() => {
                           dispatch(adminAction.deletelocation(location.id));
@@ -99,7 +102,11 @@ function Locations() {
                     className="form-signin"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      dispatch(adminAction.addlocation(e));
+                      if (addDelete) {
+                        dispatch(adminAction.addlocation(e));
+                      } else {
+                        dispatch(adminAction.editlocation(e, editlocation.id));
+                      }
                     }}
                   >
                     <div className="form-group row">
@@ -110,6 +117,8 @@ function Locations() {
                           id="name"
                           placeholder="City Name"
                           name="name"
+                          defaultValue={editlocation.name}
+                          required
                         />
                       </div>
                     </div>
@@ -121,6 +130,8 @@ function Locations() {
                           className="form-control"
                           placeholder="Location Address"
                           name="address"
+                          defaultValue={editlocation.address}
+                          required
                         />
                       </div>
                     </div>
@@ -132,6 +143,8 @@ function Locations() {
                           id="capacity"
                           placeholder="Maximum Vehicle Capacity"
                           name="capacity"
+                          defaultValue={editlocation.capacity}
+                          required
                         />
                       </div>
                     </div>

@@ -42,6 +42,9 @@ function Header() {
               <NavLink exact className="nav-link" activeClassName="active" to="/locations">Locations</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/vehicletype">Vehicle Type</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink exact className="nav-link" activeClassName="active" to="/dashboard">Dashboard</NavLink>
             </li>
           </ul>

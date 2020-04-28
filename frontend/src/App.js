@@ -12,6 +12,7 @@ import UserProfile from './user/UserProfile/UserProfile';
 import AdminHome from './admin/adminHome/adminHome';
 import Dashboard from './admin/adminDashboard/dashboard';
 import Locations from './admin/Locations/Locations';
+import Vehicletype from './admin/Vehicletype/Vehicletype';
 import authAction from './store/action/authAction';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/adminHome" component={AdminHome} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/locations" component={Locations} />
+        <Route exact path="/vehicletype" component={Vehicletype} />
       </Switch>
     </Router>
   );
