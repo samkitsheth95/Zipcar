@@ -1,0 +1,17 @@
+.ed-edit-icon {
+    cursor: pointer;
+    float: right;
+    color: blue;
+    size: 25px;
+  }
+
+.ed-del-icon {
+    cursor: pointer;
+    float: left;    
+    color: red;
+    font-size: 23px;
+  }
+
+.card-loca {
+    margin: 1rem;
+  }

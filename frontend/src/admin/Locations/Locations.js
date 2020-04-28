@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import adminAction from '../../store/action/adminActions';
 import Header from '../../common/Header/Header';
+import './Location.css';
 
 function Locations() {
   const adminLocations = useSelector((state) => state.adminReducer.location);
   const isaddLocations = useSelector(
-    (state) => state.adminReducer.locationUpdate,
+    (state) => state.adminReducer.locationUpdate
   );
   const loggedIn = useSelector((state) => state.authReducer.loggedIn);
   const isAdmin = useSelector((state) => state.authReducer.isAdmin);
@@ -20,45 +21,69 @@ function Locations() {
       <Header />
       {loggedIn && isAdmin && (
         <div>
-          <div className="button">
+          <br />
+          <div className="button text-center">
             <button
               type="button"
-              className="btn btn-info btn-lg"
+              className="btn btn-info btn-lg "
               data-toggle="modal"
               data-target="#myModal"
             >
-              Add
+              Add Location
             </button>
           </div>
+          <br />
           <div>
-            {adminLocations.map((location, index) => (
-              <div key={location.id} className="card">
-                <div className="card-body">
-                  <b>
-                    {index + 1}
-                    )
-                  </b>
-                  &nbsp;&nbsp; Name:&nbsp;&nbsp;
-                  <b>{location.name}</b>
-                  {' '}
-                  Address:&nbsp;&nbsp;
-                  <b>{location.address}</b>
-                  {' '}
-                  Capacity:&nbsp;&nbsp;
-                  <b>{location.capacity}</b>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <button
-                    type="button"
-                    className="btn btn-info btn-lg"
-                    onClick={() => {
-                      dispatch(adminAction.deletelocation(location.id));
-                    }}
-                  >
-                    Delete
-                  </button>
+            <div className="row">
+              {adminLocations.map((location) => (
+                <div key={location.id} className="col-sm-3">
+                  <div className="card-loca card">
+                    <div className="card-body">
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item">
+                          <b>{location.name}</b>
+                        </li>
+                        <li className="list-group-item">
+                          Address:
+                          <b>{location.address}</b>
+                        </li>
+                        <li className="list-group-item">
+                          Capacity:
+                          <b>{location.capacity}</b>
+                        </li>
+                      </ul>
+                      <br />
+                      <span
+                        className="ed-del-icon"
+                        tabIndex="0"
+                        onClick={() => {
+                          dispatch(adminAction.deletelocation(location.id));
+                        }}
+                        onKeyDown={() => {
+                          dispatch(adminAction.deletelocation(location.id));
+                        }}
+                        role="button"
+                      >
+                        &#9998;
+                      </span>
+                      <span
+                        className="ed-edit-icon"
+                        tabIndex="0"
+                        onClick={() => {
+                          dispatch(adminAction.deletelocation(location.id));
+                        }}
+                        onKeyDown={() => {
+                          dispatch(adminAction.deletelocation(location.id));
+                        }}
+                        role="button"
+                      >
+                        &#128465;
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="modal fade" id="myModal" role="dialog">
             <div className="modal-dialog">
@@ -83,7 +108,7 @@ function Locations() {
                           type="text"
                           className="form-control"
                           id="name"
-                          placeholder="Location Name"
+                          placeholder="City Name"
                           name="name"
                         />
                       </div>

@@ -11,6 +11,6 @@ const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASSWORD, {
 const userMoldels = require('./user')(sequelize, Sequelize);
 const locationMoldels = require('./location')(sequelize, Sequelize);
 
-//sequelize.sync({ alter: true, force: false });
+ //sequelize.sync({ alter: true, force: false });
 
 module.exports = { ...userMoldels, ...locationMoldels };

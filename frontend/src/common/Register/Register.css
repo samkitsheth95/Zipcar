@@ -1,4 +1,4 @@
-.REGISTER.vertical-align {
+.REGISTER .vertical-align {
     display: flex;
     align-items: center;
     height: 80vh;
