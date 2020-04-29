@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../common/Header/Header';
 import userAction from '../../store/action/userAction';
 import './UserProfile.css';
+import states from './states';
 
 function UserProfile() {
   const userdata = useSelector((state) => state.userReducer);
@@ -48,6 +49,10 @@ function UserProfile() {
                       <li className="list-group-item">
                         <b>Address: </b>
                         {userdata.user.address}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Mobile Number: </b>
+                        {userdata.user.phone}
                       </li>
                     </ul>
                   </div>
@@ -97,7 +102,7 @@ function UserProfile() {
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
           </div>
           <div className="modal fade" id="myModal" role="dialog">
             <div className="modal-dialog">
@@ -144,12 +149,14 @@ function UserProfile() {
                           className="form-control"
                           placeholder="Driver License State"
                           name="driverstate"
+                          defaultValue="DEFAULT"
                         >
-                          <option value="" disabled selected>
+                          <option value="DEFAULT" disabled>
                             Driver License State
                           </option>
-                          <option value="CA">CA</option>
-                          <option value="NY">NY</option>
+                          { Object.keys(states).map((key) => (
+                            <option key={key} value={states[key]}>{states[key]}</option>
+                          ))}
                         </select>
                       </div>
                     </div>
