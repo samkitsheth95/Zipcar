@@ -14,64 +14,90 @@ function UserProfile() {
   }, [dispatch, userdata.userUpdate]);
 
   return (
-    <div>
+    <div className="USERPROFILE">
       <Header />
-      <br />
       {loggedIn && (
-        <div className="USERPROFILE text-center vertical-align">
-          <div className="card">
-            <div className="jumbotron text-center">
-              <div className="card-header">
-                <h4>Basic Details</h4>
+        <div className="container">
+          <br />
+          <div className="button text-center">
+            <button
+              type="button"
+              className="btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              Edit Details
+            </button>
+          </div>
+          <br />
+          <div>
+            <div className="row">
+              <div className="col-sm-4">
+                <div className="card-loca card shadow-sm">
+                  <div className="card-body">
+                    <h4>Basic Details</h4>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">
+                        <b> Name: </b>
+                        {userdata.user.name}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Email: </b>
+                        {userdata.user.email}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Address: </b>
+                        {userdata.user.address}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <b> Name: </b>
-                  {userdata.user.name}
-                </li>
-                <li className="list-group-item">
-                  <b>Email: </b>
-                  {userdata.user.email}
-                </li>
-                <li className="list-group-item">
-                  <b>Address: </b>
-                  {userdata.user.address}
-                </li>
-              </ul>
-              <div className="card-header">
-                <h4>Card Details</h4>
+              <div className="col-sm-4">
+                <div className="card-loca card shadow-sm">
+                  <div className="card-body">
+                    <h4>License Details</h4>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">
+                        <b>Driver License State: </b>
+                        {userdata.user.driverstate}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Card License Number: </b>
+                        {userdata.user.drivernumber}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <b>Card Holders Name: </b>
-                  {userdata.user.ccname}
-                </li>
-                <li className="list-group-item">
-                  <b>Card Number: </b>
-                  {userdata.user.ccnumber}
-                </li>
-                <li className="list-group-item">
-                  <b>Expiry Date: </b>
-                  {userdata.user.expirymonth}
-                  /
-                  {userdata.user.expiryyear}
-                </li>
-                <li className="list-group-item">
-                  <b>CVV: </b>
-                  {userdata.user.cvv}
-                </li>
-              </ul>
-            </div>
-            <div className="button">
-              <button
-                type="button"
-                className="btn btn-info btn-lg"
-                data-toggle="modal"
-                data-target="#myModal"
-              >
-                Edit
-              </button>
-            </div>
+              <div className="col-sm-4">
+                <div className="card-loca card shadow-sm">
+                  <div className="card-body">
+                    <h4>Card Details</h4>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">
+                        <b>Card Holders Name: </b>
+                        {userdata.user.ccname}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Card Number: </b>
+                        {userdata.user.ccnumber}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Expiry Date: </b>
+                        {userdata.user.expirymonth}
+                        /
+                        {userdata.user.expiryyear}
+                      </li>
+                      <li className="list-group-item">
+                        <b>CVV: </b>
+                        {userdata.user.cvv}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
           </div>
           <div className="modal fade" id="myModal" role="dialog">
             <div className="modal-dialog">
@@ -132,7 +158,7 @@ function UserProfile() {
                         <input
                           type="number"
                           className="form-control"
-                          id="exampleFormControlInput1"
+                          id="drivernumber"
                           placeholder="Driver License Number"
                           name="drivernumber"
                         />

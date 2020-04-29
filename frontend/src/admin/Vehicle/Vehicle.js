@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import adminAction from '../../store/action/adminActions';
 import Header from '../../common/Header/Header';
-import './Vehicletype.css';
+import './Vehicle.css';
 
-function Vehicletype() {
+function Vehicle() {
   const adminVehicletype = useSelector((state) => state.adminReducer.vehicletype);
   const isaddVehicletype = useSelector(
     (state) => state.adminReducer.vehicletypeUpdate,
@@ -32,7 +32,7 @@ function Vehicletype() {
               data-toggle="modal"
               data-target="#myModal"
             >
-              Add Vehicle
+              Add Vehicle Type
             </button>
           </div>
           <br />
@@ -129,13 +129,29 @@ function Vehicletype() {
                   >
                     <div className="form-group row">
                       <div className="col">
-                        <input
-                          type="text"
+                        <select
                           className="form-control"
                           id="vehicletype"
                           placeholder="Vehicle Type"
                           name="vehicletype"
-                          defaultValue={editvehicletype.vehicletype}
+                          required
+                        >
+                          <option value="" disabled selected>
+                            Vehicle Type
+                          </option>
+                          <option value="CA">CA</option>
+                          <option value="NY">NY</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col">
+                        <input
+                          type="number"
+                          id="makeyear"
+                          className="form-control"
+                          placeholder="Make Year"
+                          name="makeyear"
                           required
                         />
                       </div>
@@ -143,12 +159,11 @@ function Vehicletype() {
                     <div className="form-group row">
                       <div className="col">
                         <input
-                          type="number"
-                          id="hourlycost"
+                          type="text"
                           className="form-control"
-                          placeholder="Hourly Cost"
-                          name="hourlycost"
-                          defaultValue={editvehicletype.hourlycost}
+                          id="modelnumber"
+                          placeholder="Model Number"
+                          name="modelnumber"
                           required
                         />
                       </div>
@@ -156,38 +171,11 @@ function Vehicletype() {
                     <div className="form-group row">
                       <div className="col">
                         <input
-                          type="number"
+                          type="text"
                           className="form-control"
-                          id="onetofive"
-                          placeholder="Rate for 1-5 hrs"
-                          name="onetofive"
-                          defaultValue={editvehicletype.onetofive}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col">
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="sixtoten"
-                          placeholder="Rate for 6-10 hrs"
-                          name="sixtoten"
-                          defaultValue={editvehicletype.sixtoten}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col">
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="eleventofifteen"
-                          placeholder="Rate for 11-15 hrs"
-                          name="eleventofifteen"
-                          defaultValue={editvehicletype.eleventofifteen}
+                          id="registrationtag"
+                          placeholder="Registration Tag"
+                          name="registrationtag"
                           required
                         />
                       </div>
@@ -197,10 +185,21 @@ function Vehicletype() {
                         <input
                           type="number"
                           className="form-control"
-                          id="sixteenplus"
-                          placeholder="Rate for 16+ hrs"
-                          name="sixteenplus"
-                          defaultValue={editvehicletype.sixteenplus}
+                          id="mileage"
+                          placeholder="Mileage"
+                          name="mileage"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="lastserviced"
+                          placeholder="Date of Last Service"
+                          name="lastserviced"
                           required
                         />
                       </div>
@@ -210,25 +209,28 @@ function Vehicletype() {
                         <input
                           type="number"
                           className="form-control"
-                          id="sixmonthmemberfee"
-                          placeholder="Sixth Month Member Fee"
-                          name="sixmonthmemberfee"
-                          defaultValue={editvehicletype.sixmonthmemberfee}
+                          id="vehiclecondition"
+                          placeholder="Vehicle Condition"
+                          name="vehiclecondition"
                           required
                         />
                       </div>
                     </div>
                     <div className="form-group row">
                       <div className="col">
-                        <input
-                          type="number"
+                        <select
                           className="form-control"
-                          id="latefee"
-                          placeholder="Late Fee"
-                          name="latefee"
-                          defaultValue={editvehicletype.latefee}
+                          id="rentallocation"
+                          placeholder="Rental Location"
+                          name="rentallocation"
                           required
-                        />
+                        >
+                          <option value="" disabled selected>
+                            Rental Location
+                          </option>  
+                          <option value="CA">CA</option>
+                          <option value="NY">NY</option>
+                        </select>
                       </div>
                     </div>
                     <div className="form-group row">
@@ -249,4 +251,4 @@ function Vehicletype() {
   );
 }
 
-export default Vehicletype;
+export default Vehicle;

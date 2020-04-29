@@ -1,0 +1,17 @@
+.VEHICLE .ed-del-icon {
+    cursor: pointer;
+    float: right;
+    color: blue;
+    size: 25px;
+  }
+
+.VEHICLE .ed-edit-icon {
+    cursor: pointer;
+    float: left;    
+    color: red;
+    font-size: 23px;
+  }
+
+.VEHICLE .card-loca {
+    margin-top: 16px;
+  }
