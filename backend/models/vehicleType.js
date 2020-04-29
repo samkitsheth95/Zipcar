@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     vehicletype: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      unique: true,
     },
     hourlycost: {
       type: DataTypes.INTEGER(),

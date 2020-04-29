@@ -1,4 +1,4 @@
-const { Location, Vehicletype } = require('../models/index');
+const { Location, Vehicletype, Vehicle } = require('../models/index');
 
 function addlocationHandler(req, res) {
   Location.create({
@@ -97,6 +97,54 @@ function editvehicletypeHandler(req, res) {
   });
 }
 
+function addvehicleHandler(req, res) {
+  Vehicle.create({
+    ...req.body,
+  }).then(() => {
+    res.status(200).send('added');
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
+
+function getvehicleHandler(req, res) {
+  Vehicle.findAll({ raw: true }).then((vehicle) => {
+    res.status(200).send(vehicle);
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
+
+function deletevehicleHandler(req, res) {
+  Vehicle.destroy({
+    where: {
+      id: req.body.id,
+    },
+  }).then(() => {
+    res.status(200).send('removed');
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
+
+function editvehicleHandler(req, res) {
+  Vehicle.update({
+    ...req.body,
+  }, {
+    where: {
+      id: req.body.id,
+    },
+  }).then(() => {
+    res.status(200).send('Done');
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
+
 module.exports = {
   addlocationHandler,
   getLocationsHandler,
@@ -106,4 +154,8 @@ module.exports = {
   getvehicletypeHandler,
   deletevehicletypeHandler,
   editvehicletypeHandler,
+  addvehicleHandler,
+  getvehicleHandler,
+  deletevehicleHandler,
+  editvehicleHandler,
 };

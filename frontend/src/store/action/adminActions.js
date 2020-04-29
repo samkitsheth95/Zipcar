@@ -79,6 +79,46 @@ const editvehicletype = (e, id) => (dispatch) => {
   });
 };
 
+const addvehicle = (e) => (dispatch) => {
+  const { target } = e;
+  request.sendPost('admin/addvehicle', target).then((res) => {
+    target.reset();
+    $('.modal').modal('hide');
+    dispatch({ type: 'ADDVEHICLE' });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
+
+const getvehicle = () => (dispatch) => {
+  request.get('admin/getvehicle').then((res) => {
+    dispatch({ type: 'GETVEHICLE', payload: res.data });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
+const deletevehicle = (id) => (dispatch) => {
+  request.sendPost('admin/deletevehicle', { id }).then((res) => {
+    dispatch({ type: 'ADDVEHICLE' });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
+const editvehicle = (e, id) => (dispatch) => {
+  const { target } = e;
+  const formData = new FormData(target);
+  request.sendPost('admin/editvehicle', { ...Object.fromEntries(formData), id }).then((res) => {
+    target.reset();
+    $('.modal').modal('hide');
+    dispatch({ type: 'ADDVEHICLE' });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
 export default {
   addlocation,
   getlocations,
@@ -88,4 +128,8 @@ export default {
   getvehicletype,
   deletevehicletype,
   editvehicletype,
+  addvehicle,
+  getvehicle,
+  deletevehicle,
+  editvehicle,
 };

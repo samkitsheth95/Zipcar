@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Vehicle = sequelize.define('vehicle', {
     vehicletype: {
-      type: DataTypes.INTEGER(),
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     makeyear: {

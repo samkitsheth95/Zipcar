@@ -13,8 +13,6 @@ function Locations() {
   const isAdmin = useSelector((state) => state.authReducer.isAdmin);
   const [addDelete, setaddDel] = useState(0);
   const [editlocation, seteditloc] = useState(1);
-  // console.log(addDelete);
-  // console.log(editlocation);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(adminAction.getlocations());

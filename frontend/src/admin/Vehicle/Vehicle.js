@@ -5,18 +5,25 @@ import Header from '../../common/Header/Header';
 import './Vehicle.css';
 
 function Vehicle() {
-  const adminVehicletype = useSelector((state) => state.adminReducer.vehicletype);
-  const isaddVehicletype = useSelector(
-    (state) => state.adminReducer.vehicletypeUpdate,
+  const adminVehicletype = useSelector(
+    (state) => state.adminReducer.vehicletype,
   );
+  const adminVehicle = useSelector((state) => state.adminReducer.vehicle);
+
+  const adminLocations = useSelector((state) => state.adminReducer.location);
+  const isaddVehicle = useSelector((state) => state.adminReducer.vehicleUpdate);
   const loggedIn = useSelector((state) => state.authReducer.loggedIn);
   const isAdmin = useSelector((state) => state.authReducer.isAdmin);
   const [addDelete, setaddDel] = useState(0);
-  const [editvehicletype, seteditloc] = useState(1);
+  const [editvehicle, seteditloc] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(adminAction.getvehicle());
+  }, [dispatch, isaddVehicle]);
+  useEffect(() => {
+    dispatch(adminAction.getlocations());
     dispatch(adminAction.getvehicletype());
-  }, [dispatch, isaddVehicletype]);
+  }, [dispatch]);
 
   return (
     <div className="VEHICLETYPE">
@@ -28,59 +35,68 @@ function Vehicle() {
             <button
               type="button"
               className="btn btn-info btn-lg "
-              onClick={() => { setaddDel(true); seteditloc({}); }}
+              onClick={() => {
+                setaddDel(true);
+                seteditloc({});
+              }}
               data-toggle="modal"
               data-target="#myModal"
             >
-              Add Vehicle Type
+              Add Vehicle
             </button>
           </div>
           <br />
           <div>
             <div className="row">
-              {adminVehicletype.map((vehicletype) => (
-                <div key={vehicletype.id} className="col-sm-4">
+              {adminVehicle.map((vehicle) => (
+                <div key={vehicle.id} className="col-sm-4">
                   <div className="card-loca card shadow-sm">
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                          <b>{vehicletype.vehicletype}</b>
+                          <b>{vehicle.vehicletype}</b>
                         </li>
                         <li className="list-group-item">
-                          Hourly Cost:
-                          <b>{vehicletype.hourlycost}</b>
+                          Make Year:
+                          <b>{vehicle.makeyear}</b>
                         </li>
                         <li className="list-group-item">
-                          Rate for 1-5 hrs:
-                          <b>{vehicletype.onetofive}</b>
+                          Model Number:
+                          <b>{vehicle.modelnumber}</b>
                         </li>
                         <li className="list-group-item">
-                          Rate for 6-10 hrs:
-                          <b>{vehicletype.sixtoten}</b>
+                          Registration Tag:
+                          <b>{vehicle.registrationtag}</b>
                         </li>
                         <li className="list-group-item">
-                          Rate for 11-15 hrs:
-                          <b>{vehicletype.eleventofifteen}</b>
+                          Mileage:
+                          <b>{vehicle.mileage}</b>
                         </li>
                         <li className="list-group-item">
-                          Rate for 16+ hrs:
-                          <b>{vehicletype.sixteenplus}</b>
+                          Last Serviced Date:
+                          <b>{vehicle.lastserviced}</b>
                         </li>
                         <li className="list-group-item">
-                          6 Month Member Fee:
-                          <b>{vehicletype.sixmonthmemberfee}</b>
+                          Vehicle Condition:
+                          <b>{vehicle.vehiclecondition}</b>
                         </li>
                         <li className="list-group-item">
-                          Late Fee:
-                          <b>{vehicletype.latefee}</b>
+                          Rental Location:
+                          <b>{vehicle.rentallocation}</b>
                         </li>
                       </ul>
                       <br />
                       <span
                         className="ed-edit-icon"
                         tabIndex="0"
-                        onClick={() => { setaddDel(false); seteditloc(vehicletype); }}
-                        onKeyDown={() => { setaddDel(false); seteditloc(vehicletype); }}
+                        onClick={() => {
+                          setaddDel(false);
+                          seteditloc(vehicle);
+                        }}
+                        onKeyDown={() => {
+                          setaddDel(false);
+                          seteditloc(vehicle);
+                        }}
                         data-toggle="modal"
                         data-target="#myModal"
                         role="button"
@@ -91,10 +107,10 @@ function Vehicle() {
                         className="ed-del-icon"
                         tabIndex="0"
                         onClick={() => {
-                          dispatch(adminAction.deletevehicletype(vehicletype.id));
+                          dispatch(adminAction.deletevehicle(vehicle.id));
                         }}
                         onKeyDown={() => {
-                          dispatch(adminAction.deletevehicletype(vehicletype.id));
+                          dispatch(adminAction.deletevehicle(vehicle.id));
                         }}
                         role="button"
                       >
@@ -121,9 +137,9 @@ function Vehicle() {
                     onSubmit={(e) => {
                       e.preventDefault();
                       if (addDelete) {
-                        dispatch(adminAction.addvehicletype(e));
+                        dispatch(adminAction.addvehicle(e));
                       } else {
-                        dispatch(adminAction.editvehicletype(e, editvehicletype.id));
+                        dispatch(adminAction.editvehicle(e, editvehicle.id));
                       }
                     }}
                   >
@@ -134,13 +150,22 @@ function Vehicle() {
                           id="vehicletype"
                           placeholder="Vehicle Type"
                           name="vehicletype"
+                          defaultValue="DEFAULT"
                           required
                         >
-                          <option value="" disabled selected>
-                            Vehicle Type
+                          <option value="DEFAULT" disabled>
+                            {addDelete
+                              ? 'Vehicle Type'
+                              : editvehicle.vehicletype}
                           </option>
-                          <option value="CA">CA</option>
-                          <option value="NY">NY</option>
+                          {adminVehicletype.map((vehicletype) => (
+                            <option
+                              key={vehicletype.id}
+                              value={vehicletype.vehicletype}
+                            >
+                              {vehicletype.vehicletype}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -152,6 +177,7 @@ function Vehicle() {
                           className="form-control"
                           placeholder="Make Year"
                           name="makeyear"
+                          defaultValue={editvehicle.makeyear}
                           required
                         />
                       </div>
@@ -164,6 +190,7 @@ function Vehicle() {
                           id="modelnumber"
                           placeholder="Model Number"
                           name="modelnumber"
+                          defaultValue={editvehicle.modelnumber}
                           required
                         />
                       </div>
@@ -176,6 +203,7 @@ function Vehicle() {
                           id="registrationtag"
                           placeholder="Registration Tag"
                           name="registrationtag"
+                          defaultValue={editvehicle.registrationtag}
                           required
                         />
                       </div>
@@ -188,6 +216,20 @@ function Vehicle() {
                           id="mileage"
                           placeholder="Mileage"
                           name="mileage"
+                          defaultValue={editvehicle.mileage}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col">
+                        <input
+                          type="date"
+                          className="form-control"
+                          id="lastserviced"
+                          placeholder="Date of Last Service"
+                          name="lastserviced"
+                          defaultValue={editvehicle.lastserviced}
                           required
                         />
                       </div>
@@ -197,21 +239,10 @@ function Vehicle() {
                         <input
                           type="text"
                           className="form-control"
-                          id="lastserviced"
-                          placeholder="Date of Last Service"
-                          name="lastserviced"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col">
-                        <input
-                          type="number"
-                          className="form-control"
                           id="vehiclecondition"
                           placeholder="Vehicle Condition"
                           name="vehiclecondition"
+                          defaultValue={editvehicle.vehiclecondition}
                           required
                         />
                       </div>
@@ -223,13 +254,21 @@ function Vehicle() {
                           id="rentallocation"
                           placeholder="Rental Location"
                           name="rentallocation"
+                          defaultValue="DEFAULT"
                           required
                         >
-                          <option value="" disabled selected>
-                            Rental Location
-                          </option>  
-                          <option value="CA">CA</option>
-                          <option value="NY">NY</option>
+                          <option value="DEFAULT" disabled>
+                            {addDelete
+                              ? 'Rental Location'
+                              : editvehicle.rentallocation}
+                          </option>
+                          {adminLocations.map((location) => (
+                            <option key={location.id} value={location.name}>
+                              {location.name}
+                              , &nbsp;
+                              {location.address}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>

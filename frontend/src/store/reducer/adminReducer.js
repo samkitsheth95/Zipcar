@@ -1,8 +1,10 @@
 const initialState = {
   location: [],
   vehicletype: [],
+  vehicle: [],
   locationUpdate: false,
   vehicletypeUpdate: false,
+  vehicleUpdate: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +28,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         vehicletype: action.payload,
+      };
+    case 'ADDVEHICLE':
+      return {
+        ...state,
+        vehicleUpdate: !state.vehicleUpdate,
+      };
+    case 'GETVEHICLE':
+      return {
+        ...state,
+        vehicle: action.payload,
       };
     default:
       return {
