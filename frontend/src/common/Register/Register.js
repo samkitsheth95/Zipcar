@@ -135,6 +135,18 @@ function Register() {
                 pattern="\d{4}"
                 required
               />
+              <input
+                type="text"
+                className="form-control"
+                id="cvv"
+                name="cvv"
+                placeholder="CVV"
+                autoComplete="off"
+                maxLength="4"
+                pattern="\d{3,4}"
+                title="Fill your 3 or 4 digit CVV"
+                required
+              />
             </div>
           )}
           <button
