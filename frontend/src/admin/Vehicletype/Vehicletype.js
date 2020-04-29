@@ -44,34 +44,41 @@ function Vehicletype() {
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                          <b>{vehicletype.vehicletype}</b>
+                          <h4>{vehicletype.vehicletype}</h4>
                         </li>
                         <li className="list-group-item">
                           Hourly Cost:
+                          &nbsp;
                           <b>{vehicletype.hourlycost}</b>
                         </li>
                         <li className="list-group-item">
                           Rate for 1-5 hrs:
+                          &nbsp;
                           <b>{vehicletype.onetofive}</b>
                         </li>
                         <li className="list-group-item">
                           Rate for 6-10 hrs:
+                          &nbsp;
                           <b>{vehicletype.sixtoten}</b>
                         </li>
                         <li className="list-group-item">
                           Rate for 11-15 hrs:
+                          &nbsp;
                           <b>{vehicletype.eleventofifteen}</b>
                         </li>
                         <li className="list-group-item">
                           Rate for 16+ hrs:
+                          &nbsp;
                           <b>{vehicletype.sixteenplus}</b>
                         </li>
                         <li className="list-group-item">
                           6 Month Member Fee:
+                          &nbsp;
                           <b>{vehicletype.sixmonthmemberfee}</b>
                         </li>
                         <li className="list-group-item">
                           Late Fee:
+                          &nbsp;
                           <b>{vehicletype.latefee}</b>
                         </li>
                       </ul>

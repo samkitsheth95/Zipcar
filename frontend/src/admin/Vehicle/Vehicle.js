@@ -54,34 +54,41 @@ function Vehicle() {
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                          <b>{vehicle.vehicletype}</b>
+                          <h4>{vehicle.vehicletype}</h4>
                         </li>
                         <li className="list-group-item">
                           Make Year:
+                          &nbsp;
                           <b>{vehicle.makeyear}</b>
                         </li>
                         <li className="list-group-item">
                           Model Number:
+                          &nbsp;
                           <b>{vehicle.modelnumber}</b>
                         </li>
                         <li className="list-group-item">
                           Registration Tag:
+                          &nbsp;
                           <b>{vehicle.registrationtag}</b>
                         </li>
                         <li className="list-group-item">
                           Mileage:
+                          &nbsp;
                           <b>{vehicle.mileage}</b>
                         </li>
                         <li className="list-group-item">
                           Last Serviced Date:
+                          &nbsp;
                           <b>{vehicle.lastserviced}</b>
                         </li>
                         <li className="list-group-item">
                           Vehicle Condition:
+                          &nbsp;
                           <b>{vehicle.vehiclecondition}</b>
                         </li>
                         <li className="list-group-item">
                           Rental Location:
+                          &nbsp;
                           <b>{vehicle.rentallocation}</b>
                         </li>
                       </ul>

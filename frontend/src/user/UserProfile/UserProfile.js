@@ -129,6 +129,8 @@ function UserProfile() {
                           id="name"
                           placeholder="Name"
                           name="name"
+                          defaultValue={userdata.user.name}
+                          required
                         />
                       </div>
                     </div>
@@ -140,6 +142,8 @@ function UserProfile() {
                           className="form-control"
                           placeholder="Email Address"
                           name="email"
+                          defaultValue={userdata.user.email}
+                          required
                         />
                       </div>
                     </div>
@@ -150,6 +154,7 @@ function UserProfile() {
                           placeholder="Driver License State"
                           name="driverstate"
                           defaultValue="DEFAULT"
+                          required
                         >
                           <option value="DEFAULT" disabled>
                             Driver License State
@@ -168,6 +173,8 @@ function UserProfile() {
                           id="drivernumber"
                           placeholder="Driver License Number"
                           name="drivernumber"
+                          defaultValue={userdata.user.drivernumber}
+                          required
                         />
                       </div>
                     </div>
@@ -179,6 +186,8 @@ function UserProfile() {
                           id="address"
                           placeholder="Address"
                           name="address"
+                          defaultValue={userdata.user.address}
+                          required
                         />
                       </div>
                     </div>
@@ -192,6 +201,8 @@ function UserProfile() {
                           maxLength="10"
                           pattern="\d{10}"
                           name="phone"
+                          defaultValue={userdata.user.phone}
+                          required
                         />
                       </div>
                     </div>
@@ -205,6 +216,7 @@ function UserProfile() {
                           pattern="\w+ \w+.*"
                           title="Fill your first and last name"
                           name="ccname"
+                          defaultValue={userdata.user.ccname}
                           required
                         />
                       </div>
@@ -221,6 +233,7 @@ function UserProfile() {
                           maxLength="19"
                           pattern="\d{14,19}"
                           title="Fill your 16 digit card name"
+                          defaultValue={userdata.user.ccnumber}
                           required
                         />
                       </div>
@@ -236,6 +249,7 @@ function UserProfile() {
                               name="expirymonth"
                               maxLength="2"
                               pattern="\d{2}"
+                              defaultValue={userdata.user.expirymonth}
                               required
                             />
                             <input
@@ -245,6 +259,7 @@ function UserProfile() {
                               name="expiryyear"
                               maxLength="4"
                               pattern="\d{4}"
+                              defaultValue={userdata.user.expiryyear}
                               required
                             />
                           </div>
@@ -263,6 +278,7 @@ function UserProfile() {
                           maxLength="4"
                           pattern="\d{3,4}"
                           title="Fill your 3 or 4 digit CVV"
+                          defaultValue={userdata.user.cvv}
                           required
                         />
                       </div>

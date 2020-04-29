@@ -44,14 +44,16 @@ function Locations() {
                     <div className="card-body">
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                          <b>{location.name}</b>
+                          <h4>{location.name}</h4>
                         </li>
                         <li className="list-group-item">
                           Address:
+                          &nbsp;
                           <b>{location.address}</b>
                         </li>
                         <li className="list-group-item">
                           Capacity:
+                          &nbsp;
                           <b>{location.capacity}</b>
                         </li>
                       </ul>
