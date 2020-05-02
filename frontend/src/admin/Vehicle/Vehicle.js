@@ -5,6 +5,7 @@ import Header from '../../common/Header/Header';
 import './Vehicle.css';
 
 function Vehicle() {
+  const dispatch = useDispatch();
   const adminVehicletype = useSelector(
     (state) => state.adminReducer.vehicletype,
   );
@@ -16,7 +17,6 @@ function Vehicle() {
   const isAdmin = useSelector((state) => state.authReducer.isAdmin);
   const [addDelete, setaddDel] = useState(0);
   const [editvehicle, seteditloc] = useState(1);
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(adminAction.getvehicle());
   }, [dispatch, isaddVehicle]);
