@@ -18,6 +18,15 @@ const getuser = () => (dispatch) => {
   });
 };
 
+const search = (e) => (dispatch) => {
+  request.sendPost('user/search', e.target).then((res) => {
+    console.log(res.data);
+    // dispatch({ type: 'USERUPDATE' });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
 export default {
-  userupdate, getuser,
+  userupdate, getuser, search,
 };

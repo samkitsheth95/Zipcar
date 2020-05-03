@@ -1,4 +1,5 @@
-const { User } = require('../models/index');
+const Sequelize = require('sequelize');
+const { User, Vehicle } = require('../models/index');
 
 function updateHandler(req, res) {
   User.update({
@@ -28,6 +29,24 @@ function getUserHandler(req, res) {
   });
 }
 
+function searchHandler(req, res) {
+  console.log({ ...req.body });
+  const { Op } = Sequelize;
+  Vehicle.findAll({
+    where: {
+      ...req.body,
+      name: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('name')), 'LIKE', `%${req.body.name}%`),
+    },
+  }).then((result) => {
+    // console.log(result);
+    res.status(200).send(result);
+  },
+  (err) => {
+    console.log(err);
+    res.status(400).send(err);
+  });
+}
+
 module.exports = {
-  updateHandler, getUserHandler,
+  updateHandler, getUserHandler, searchHandler,
 };

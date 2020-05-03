@@ -57,6 +57,11 @@ function Vehicle() {
                           <h4>{vehicle.vehicletype}</h4>
                         </li>
                         <li className="list-group-item">
+                          Name:
+                          &nbsp;
+                          <b>{vehicle.name}</b>
+                        </li>
+                        <li className="list-group-item">
                           Make Year:
                           &nbsp;
                           <b>{vehicle.makeyear}</b>
@@ -174,6 +179,19 @@ function Vehicle() {
                             </option>
                           ))}
                         </select>
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col">
+                        <input
+                          type="text"
+                          id="vehiclename"
+                          className="form-control"
+                          placeholder="Name"
+                          name="name"
+                          defaultValue={editvehicle.name}
+                          required
+                        />
                       </div>
                     </div>
                     <div className="form-group row">

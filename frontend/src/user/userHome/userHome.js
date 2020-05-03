@@ -40,7 +40,7 @@ function UserHome() {
                 id="vehicle"
                 className="form-control"
                 placeholder="Write Vehicle you want to rent"
-                name="vehicle"
+                name="name"
                 required
               />
             </div>
@@ -50,10 +50,9 @@ function UserHome() {
                 id="vehicletype"
                 placeholder="Vehicle Type"
                 name="vehicletype"
-                defaultValue="DEFAULT"
-                required
+                defaultValue=""
               >
-                <option value="" disabled selected>Vehicle Type</option>
+                <option disabled selected>Vehicle Type</option>
                 {adminVehicletype.map((vehicletype) => (
                   <option
                     key={vehicletype.id}
@@ -70,15 +69,13 @@ function UserHome() {
                 id="rentallocation"
                 placeholder="Rental Location"
                 name="rentallocation"
-                defaultValue="DEFAULT"
-                required
+                defaultValue=""
               >
                 <option value="" disabled selected>Location</option>
                 {adminLocations.map((location) => (
                   <option key={location.id} value={location.name}>
                     {location.name}
-                    , &nbsp;
-                    {location.address}
+
                   </option>
                 ))}
               </select>
