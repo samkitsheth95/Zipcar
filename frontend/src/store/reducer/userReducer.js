@@ -1,5 +1,6 @@
 const initialState = {
   user: {},
+  searchRes: [],
   userUpdate: false,
 };
 
@@ -14,6 +15,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: { ...action.payload },
+      };
+    case 'SEARCHRES':
+      return {
+        ...state,
+        searchRes: action.payload,
       };
     default:
       return {
