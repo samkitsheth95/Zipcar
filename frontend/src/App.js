@@ -7,7 +7,7 @@ import {
 import Home from './common/Home/Home';
 import Login from './common/Login/Login';
 import Register from './common/Register/Register';
-import UserHome from './user/UserHome/UserHome';
+import UserHome from './user/userHome/UserHome';
 import UserProfile from './user/UserProfile/UserProfile';
 import AdminHome from './admin/adminHome/adminHome';
 import Dashboard from './admin/adminDashboard/dashboard';
