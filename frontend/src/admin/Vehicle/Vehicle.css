@@ -15,3 +15,13 @@
 .VEHICLE .card-loca {
     margin-top: 16px;
   }
+
+.VEHICLETYPE input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: #8e8e8e;
+  margin-right: 0.5em;
+}
+.VEHICLETYPE input[type="date"]:focus:before,
+.VEHICLETYPE input[type="date"]:valid:before {
+  content: "";
+}

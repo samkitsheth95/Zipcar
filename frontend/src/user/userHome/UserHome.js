@@ -147,7 +147,12 @@ function UserHome() {
                   </ul>
                   <br />
                   <div className="col text-center">
-                    <button type="submit" className="btn col-sm-6 btn-success">
+                    <button
+                      type="submit"
+                      className="btn col-sm-6 btn-success"
+                      data-toggle="modal"
+                      data-target="#myModal"
+                    >
                       Book &nbsp;
                       <FaCarSide />
                     </button>
@@ -156,6 +161,61 @@ function UserHome() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="modal fade" id="myModal" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Select time and duration</h4>
+                <button type="button" className="close" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+              <div className="modal-body">
+                <form
+                  className="form-signin"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <div className="form-group row">
+                    <div className="col">
+                      <input
+                        type="datetime-local"
+                        className="form-control"
+                        id="select-date"
+                        placeholder="Select Date and Time to rent"
+                        name="select-date"
+                        min={`${new Date().toISOString().slice(0, 10)}T${new Date().toTimeString().split(' ')[0].slice(0, -3)}`}
+                        max={`${new Date(new Date().getTime() + (91 * 86400000)).toISOString().slice(0, 10)}T${new Date(new Date().getTime() + (91 * 86400000)).toTimeString().split(' ')[0].slice(0, -3)}`}
+                        defaultValue=""
+                        required
+                      />
+
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="select-duration"
+                        placeholder="Enter duration to rent(hours)"
+                        name="select-duration"
+                        min="1"
+                        max="72"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <div className="col text-center">
+                      <button type="submit" className="btn btn-success">
+                        Book &nbsp;
+                        <FaCarSide />
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
