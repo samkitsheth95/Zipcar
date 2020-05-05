@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes, User) => {
   const Vehicle = sequelize.define('vehicle', {
     name: {
       type: DataTypes.STRING(255),
@@ -39,7 +39,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+  const Booking = sequelize.define('booking', {
+    from: {
+      type: DataTypes.DATE(),
+      allowNull: false,
+    },
+    to: {
+      type: DataTypes.DATE(),
+      allowNull: false,
+    },
+  });
+  Booking.belongsTo(User);
+  Booking.belongsTo(Vehicle);
   return {
-    Vehicle,
+    Vehicle, Booking,
   };
 };

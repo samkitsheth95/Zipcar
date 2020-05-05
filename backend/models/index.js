@@ -12,7 +12,7 @@ const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASSWORD, {
 const userMoldels = require('./user')(sequelize, Sequelize);
 const locationMoldels = require('./location')(sequelize, Sequelize);
 const vehicletypeMoldels = require('./vehicleType')(sequelize, Sequelize);
-const vehicleMoldels = require('./vehicle')(sequelize, Sequelize);
+const vehicleMoldels = require('./vehicle')(sequelize, Sequelize, userMoldels.User);
 
 // sequelize.sync({ alter: true, force: false });
 

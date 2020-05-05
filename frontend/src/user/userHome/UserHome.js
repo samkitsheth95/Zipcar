@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaCarSide } from 'react-icons/fa';
 import adminAction from '../../store/action/adminActions';
@@ -19,6 +19,8 @@ function UserHome() {
     dispatch(adminAction.getlocations());
     dispatch(adminAction.getvehicletype());
   }, [dispatch]);
+
+  const [selectedVehicle, setSelectedVehicle] = useState(0);
   return (
     <div>
       <Header />
@@ -152,6 +154,7 @@ function UserHome() {
                       className="btn col-sm-6 btn-success"
                       data-toggle="modal"
                       data-target="#myModal"
+                      onClick={() => setSelectedVehicle(vehicle.id)}
                     >
                       Book &nbsp;
                       <FaCarSide />
@@ -174,9 +177,7 @@ function UserHome() {
               <div className="modal-body">
                 <form
                   className="form-signin"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                  }}
+                  onSubmit={(ev) => dispatch(userAction.book(ev))}
                 >
                   <div className="form-group row">
                     <div className="col">
@@ -202,6 +203,8 @@ function UserHome() {
                         max="72"
                         required
                       />
+
+                      <input type="hidden" name="vehicleId" value={selectedVehicle} />
                     </div>
                   </div>
                   <div className="form-group row">

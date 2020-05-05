@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { User, Vehicle } = require('../models/index');
+const { User, Vehicle, Booking } = require('../models/index');
 
 function updateHandler(req, res) {
   User.update({
@@ -47,6 +47,38 @@ function searchHandler(req, res) {
   });
 }
 
+function makeBooking(req, res) {
+  const startDate = new Date(req.body['select-date']);
+  const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
+  Booking.findOne({
+    where: {
+      vehicleId: req.body.vehicleId,
+      [Sequelize.Op.or]: [{
+        from: {
+          [Sequelize.Op.between]: [startDate, endDate],
+        },
+      },
+      {
+        to: {
+          [Sequelize.Op.between]: [startDate, endDate],
+        },
+      }],
+    },
+  }).then((bookings) => {
+    if (bookings) res.status(400).send({ error: 'Booking slot does not exist.' });
+    else {
+      Booking.create({
+        userId: req.user.id,
+        vehicleId: req.body.vehicleId,
+        from: startDate,
+        to: endDate,
+      }).then(() => {
+        res.send({ res: 'Success' });
+      });
+    }
+  });
+}
+
 module.exports = {
-  updateHandler, getUserHandler, searchHandler,
+  updateHandler, getUserHandler, searchHandler, makeBooking,
 };

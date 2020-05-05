@@ -26,6 +26,13 @@ const search = (e) => (dispatch) => {
   });
 };
 
+const book = (ev) => (dispatch) => {
+  ev.preventDefault();
+  request.sendPost('user/book', ev.target).then((res) => {
+    console.log(res);
+  });
+};
+
 export default {
-  userupdate, getuser, search,
+  userupdate, getuser, search, book,
 };
