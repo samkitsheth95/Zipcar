@@ -1,0 +1,20 @@
+.USERHOME .card-loca {
+    margin-top: 16px;
+  }
+.USERHOME .form-search {
+  margin-top: 20px;
+}
+.USERHOME.container {
+    margin-bottom: 20px;
+}
+
+
+.USERHOME input[type="datetime-local"]:before {
+  content: attr(placeholder) !important;
+  color: #8e8e8e;
+  margin-right: 0.5em;
+}
+.USERHOME input[type="datetime-local"]:focus:before,
+.USERHOME input[type="datetime-local"]:valid:before {
+  content: "";
+}
