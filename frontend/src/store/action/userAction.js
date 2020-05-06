@@ -26,10 +26,14 @@ const search = (e) => (dispatch) => {
   });
 };
 
-const book = (ev) => (dispatch) => {
+const book = (ev, history) => (dispatch) => {
   ev.preventDefault();
-  request.sendPost('user/book', ev.target).then((res) => {
-    console.log(res);
+  const { target } = ev;
+  request.sendPost('user/book', target).then((res) => {
+    console.log(res.data);
+    target.reset();
+    $('.modal').modal('hide');
+    history.push('/booking');
   });
 };
 

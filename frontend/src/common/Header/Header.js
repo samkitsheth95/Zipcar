@@ -31,6 +31,9 @@ function Header() {
             <li className="nav-item">
               <NavLink exact className="nav-link" activeClassName="active" to="/userProfile">Profile</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink exact className="nav-link" activeClassName="active" to="/booking">Booking</NavLink>
+            </li>
           </ul>
           )}
           { auth.loggedIn && auth.isAdmin && (

@@ -31,8 +31,7 @@ function logoutHandler(req, res) {
 }
 
 function registerHandler(req, res) {
-  if (req.body.isAdmin === '1' && req.body.passcode !== '12345') { res.status(400).send({ res: 'Failed' }); } 
-  else {
+  if (req.body.isAdmin === '1' && req.body.passcode !== '12345') { res.status(400).send({ res: 'Failed' }); } else {
     bcrypt.hash(req.body.password, 10).then((hash) => {
       User.create({
         ...req.body,

@@ -30,8 +30,6 @@ function getUserHandler(req, res) {
 }
 
 function searchHandler(req, res) {
-  console.log({ ...req.body });
-  const { Op } = Sequelize;
   Vehicle.findAll({
     where: {
       ...req.body,
@@ -42,7 +40,6 @@ function searchHandler(req, res) {
     res.status(200).send(result);
   },
   (err) => {
-    console.log(err);
     res.status(400).send(err);
   });
 }
@@ -73,7 +70,7 @@ function makeBooking(req, res) {
         from: startDate,
         to: endDate,
       }).then(() => {
-        res.send({ res: 'Success' });
+        res.status(200).send({ res: 'Success' });
       });
     }
   });

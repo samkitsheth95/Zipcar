@@ -14,6 +14,7 @@ import Dashboard from './admin/adminDashboard/dashboard';
 import Locations from './admin/Locations/Locations';
 import Vehicletype from './admin/Vehicletype/Vehicletype';
 import Vehicle from './admin/Vehicle/Vehicle';
+import Booking from './user/Booking/Booking';
 import authAction from './store/action/authAction';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/locations" component={Locations} />
         <Route exact path="/vehicletype" component={Vehicletype} />
         <Route exact path="/vehicle" component={Vehicle} />
+        <Route exact path="/booking" component={Booking} />
       </Switch>
     </Router>
   );
