@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   searchRes: [],
+  booking: [],
   userUpdate: false,
 };
 
@@ -20,6 +21,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchRes: action.payload,
+      };
+    case 'GETBOOKING':
+      return {
+        ...state,
+        booking: action.payload,
       };
     default:
       return {

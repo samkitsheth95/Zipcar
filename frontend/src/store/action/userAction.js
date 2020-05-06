@@ -37,6 +37,15 @@ const book = (ev, history) => (dispatch) => {
   });
 };
 
+const getbooking = () => (dispatch) => {
+  request.get('user/getbooking').then((res) => {
+    //console.log(res.data);
+    dispatch({ type: 'GETBOOKING', payload: res.data });
+  }, () => {
+    // dispatch({ type: 'ERROR' });
+  });
+};
+
 export default {
-  userupdate, getuser, search, book,
+  userupdate, getuser, search, book, getbooking,
 };

@@ -76,6 +76,18 @@ function makeBooking(req, res) {
   });
 }
 
+
+function getBookingHandler(req, res) {
+  Booking.findAll({ where: { userId: req.user.id }, include: [Vehicle], raw: true })
+    .then((result) => {
+      res.status(200).send(result);
+    },
+    (err) => {
+      res.status(400).send(err);
+    });
+  // res.status(200).send({ ans: req.user.id });
+}
+
 module.exports = {
-  updateHandler, getUserHandler, searchHandler, makeBooking,
+  updateHandler, getUserHandler, searchHandler, makeBooking, getBookingHandler,
 };
