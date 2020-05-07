@@ -34,15 +34,30 @@ const book = (ev, history) => (dispatch) => {
     target.reset();
     $('.modal').modal('hide');
     history.push('/booking');
+  }, (res, data) => {
+    console.log(res.error);
+    // dispatch({ type: 'ERROR' });
   });
 };
 
 const getbooking = () => (dispatch) => {
   request.get('user/getbooking').then((res) => {
-    //console.log(res.data);
+    // console.log(res.data);
     dispatch({ type: 'GETBOOKING', payload: res.data });
-  }, () => {
-    // dispatch({ type: 'ERROR' });
+  }).catch((error) => {
+    if (error.res) {
+      // Request made and server responded
+      console.log(error.res.data);
+      console.log(error.res.status);
+      console.log(error.res.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
+   // console.log(error.response.data);
   });
 };
 

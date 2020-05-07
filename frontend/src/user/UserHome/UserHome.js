@@ -6,6 +6,16 @@ import adminAction from '../../store/action/adminActions';
 import userAction from '../../store/action/userAction';
 import Header from '../../common/Header/Header';
 import './UserHome.css';
+function getDate(d) {
+  // console.log(d);
+  const yearString = d.getFullYear();
+  const monthString = `0${(d.getMonth() + 1)}`.slice(-2);
+  const dateString = `0${(d.getDate())}`.slice(-2);
+  const timeString = `${d.toTimeString().split(' ')[0].slice(0, -3)}`;
+  const finalString = `${yearString}-${monthString}-${dateString}T${timeString}`;
+
+  return finalString;
+}
 
 function UserHome() {
   const dispatch = useDispatch();
@@ -17,7 +27,10 @@ function UserHome() {
   const adminLocations = useSelector((state) => state.adminReducer.location);
   const searchRes = useSelector((state) => state.userReducer.searchRes);
   const [selectedVehicle, setSelectedVehicle] = useState(0);
-  // console.log(searchRes);
+  const minDate = getDate(new Date());
+  const maxDate = getDate(new Date(new Date().getTime() + 91 * 86400000));
+  console.log(minDate);
+  console.log(maxDate);
   useEffect(() => {
     dispatch(adminAction.getlocations());
     dispatch(adminAction.getvehicletype());
@@ -178,20 +191,8 @@ function UserHome() {
                           id="select-date"
                           placeholder="Select Date and Time to rent"
                           name="select-date"
-                          min={`${new Date()
-                            .toISOString()
-                            .slice(0, 10)}T${new Date()
-                            .toTimeString()
-                            .split(' ')[0]
-                            .slice(0, -3)}`}
-                          max={`${new Date(new Date().getTime() + 91 * 86400000)
-                            .toISOString()
-                            .slice(0, 10)}T${new Date(
-                            new Date().getTime() + 91 * 86400000,
-                          )
-                            .toTimeString()
-                            .split(' ')[0]
-                            .slice(0, -3)}`}
+                          min={minDate}
+                          max={maxDate}
                           defaultValue=""
                           required
                         />

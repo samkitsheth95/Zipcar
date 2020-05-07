@@ -45,7 +45,7 @@ function searchHandler(req, res) {
 }
 
 function makeBooking(req, res) {
-  const startDate = new Date(req.body['select-date']);
+  const startDate = new Date((new Date(req.body['select-date'])).getTime());
   const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
   Booking.findOne({
     where: {
@@ -78,7 +78,12 @@ function makeBooking(req, res) {
 
 
 function getBookingHandler(req, res) {
-  Booking.findAll({ where: { userId: req.user.id }, include: [Vehicle], raw: true })
+  Booking.findAll({
+    where: { userId: req.user.id },
+    include: [Vehicle],
+    raw: true,
+    nest: true,
+  })
     .then((result) => {
       res.status(200).send(result);
     },
