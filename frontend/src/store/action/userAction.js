@@ -2,63 +2,46 @@
 import request from '../../helpers/communication';
 
 const userupdate = (e) => (dispatch) => {
-  request.sendPost('user/update', e.target).then(() => {
-    $('.modal').modal('hide');
-    dispatch({ type: 'USERUPDATE' });
-  }, () => {
-    // dispatch({ type: 'ERROR' });
-  });
+  request.sendPost('user/update', e.target)
+    .then(() => {
+      $('.modal').modal('hide');
+      dispatch({ type: 'USERUPDATE' });
+    });
 };
 
 const getuser = () => (dispatch) => {
-  request.get('user/getuser').then((res) => {
-    dispatch({ type: 'GETUSER', payload: res.data });
-  }, () => {
-    // dispatch({ type: 'ERROR' });
-  });
+  request.get('user/getuser')
+    .then((res) => {
+      dispatch({ type: 'GETUSER', payload: res.data });
+    });
 };
 
 const search = (e) => (dispatch) => {
-  request.sendPost('user/search', e.target).then((res) => {
-    dispatch({ type: 'SEARCHRES', payload: res.data });
-  }, () => {
-    // dispatch({ type: 'ERROR' });
-  });
+  request.sendPost('user/search', e.target)
+    .then((res) => {
+      dispatch({ type: 'SEARCHRES', payload: res.data });
+    });
 };
 
 const book = (ev, history) => (dispatch) => {
   ev.preventDefault();
   const { target } = ev;
-  request.sendPost('user/book', target).then((res) => {
-    console.log(res.data);
-    target.reset();
-    $('.modal').modal('hide');
-    history.push('/booking');
-  }, (res, data) => {
-    console.log(res.error);
-    // dispatch({ type: 'ERROR' });
-  });
+  request.sendPost('user/book', target)
+    .then((res) => {
+      console.log(res.data);
+      target.reset();
+      $('.modal').modal('hide');
+      history.push('/booking');
+    })
+    .catch((error) => { console.log(error.response.data.error); });
 };
 
 const getbooking = () => (dispatch) => {
-  request.get('user/getbooking').then((res) => {
+  request.get('user/getbooking')
+    .then((res) => {
     // console.log(res.data);
-    dispatch({ type: 'GETBOOKING', payload: res.data });
-  }).catch((error) => {
-    if (error.res) {
-      // Request made and server responded
-      console.log(error.res.data);
-      console.log(error.res.status);
-      console.log(error.res.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.log(error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.log('Error', error.message);
-    }
-   // console.log(error.response.data);
-  });
+      dispatch({ type: 'GETBOOKING', payload: res.data });
+    });
 };
 
 export default {
