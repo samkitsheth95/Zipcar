@@ -8,7 +8,6 @@ import Header from '../../common/Header/Header';
 import './UserHome.css';
 
 function getDate(d) {
-  // console.log(d);
   const yearString = d.getFullYear();
   const monthString = `0${(d.getMonth() + 1)}`.slice(-2);
   const dateString = `0${(d.getDate())}`.slice(-2);
@@ -25,13 +24,12 @@ function UserHome() {
   const adminVehicletype = useSelector(
     (state) => state.adminReducer.vehicletype,
   );
+  const searcherr = useSelector((state) => state.userReducer.bookingerr);
   const adminLocations = useSelector((state) => state.adminReducer.location);
   const searchRes = useSelector((state) => state.userReducer.searchRes);
   const [selectedVehicle, setSelectedVehicle] = useState(0);
   const minDate = getDate(new Date());
   const maxDate = getDate(new Date(new Date().getTime() + 91 * 86400000));
-  console.log(minDate);
-  console.log(maxDate);
   useEffect(() => {
     dispatch(adminAction.getlocations());
     dispatch(adminAction.getvehicletype());
@@ -110,6 +108,7 @@ function UserHome() {
               </div>
             </div>
           </form>
+          {searcherr ? <div className="alert alert-danger" role="alert">{searcherr}</div> : ''}
           <div className="row">
             {searchRes.map((vehicle) => (
               <div key={vehicle.id} className="col-sm-4">

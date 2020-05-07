@@ -45,12 +45,13 @@ function searchHandler(req, res) {
 }
 
 function makeBooking(req, res) {
-  console.log({...req.body})
+  console.log({ ...req.body });
   const startDate = new Date((new Date(req.body['select-date'])).getTime());
   const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
   Booking.findOne({
     where: {
       vehicleId: req.body.vehicleId,
+      status: { [Sequelize.Op.notIn]: ['Cancelled', 'Ride Complete'] },
       [Sequelize.Op.or]: [{
         from: {
           [Sequelize.Op.between]: [startDate, endDate],
@@ -62,8 +63,10 @@ function makeBooking(req, res) {
         },
       }],
     },
+    nest: true,
+    include: [Vehicle],
   }).then((bookings) => {
-    if (bookings) res.status(400).send({ error: 'Booking slot does not exist.' });
+    if (bookings) res.status(400).send({ error: 'Booking slot does not exist for the selected Vehicle.Plese choose from these similar options.', vehicleType: bookings.vehicle.dataValues.vehicletype });
     else {
       Booking.create({
         userId: req.user.id,

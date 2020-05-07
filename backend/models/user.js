@@ -5,6 +5,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    memberstatus: {
+      type: DataTypes.BOOLEAN(),
+      allowNull: true,
+    },
+    membermonth: {
+      type: DataTypes.INTEGER(),
+      allowNull: true,
+    },
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,

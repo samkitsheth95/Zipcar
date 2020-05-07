@@ -29,9 +29,19 @@ const book = (ev, history) => (dispatch) => {
       $('.modal').modal('hide');
       history.push('/booking');
       dispatch({ type: 'SEARCHCLEAR' });
+      dispatch({ type: 'BOOKINGERR', payload: '' });
     })
     .catch((error) => {
-      console.log(error.response.data.error);
+      target.reset();
+      $('.modal').modal('hide');
+      const vehicletype = error.response.data.vehicleType;
+      const name = '';
+      request.sendPost('user/search', { vehicletype, name })
+        .then((res) => {
+          dispatch({ type: 'SEARCHRES', payload: res.data });
+          dispatch({ type: 'BOOKINGERR', payload: error.response.data.error });
+        });
+      history.push('/userhome');
     });
 };
 
