@@ -15,7 +15,9 @@ import Locations from './admin/Locations/Locations';
 import Vehicletype from './admin/Vehicletype/Vehicletype';
 import Vehicle from './admin/Vehicle/Vehicle';
 import Booking from './user/Booking/Booking';
+import Member from './admin/Membership/Member';
 import authAction from './store/action/authAction';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ function App() {
         <Route exact path="/vehicletype" component={Vehicletype} />
         <Route exact path="/vehicle" component={Vehicle} />
         <Route exact path="/booking" component={Booking} />
+        <Route exact path="/member" component={Member} />
       </Switch>
     </Router>
   );

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../common/Header/Header';
 import userAction from '../../store/action/userAction';
+import adminAction from '../../store/action/adminActions';
 import './UserProfile.css';
 import states from './states';
 
@@ -9,10 +10,11 @@ function UserProfile() {
   const userdata = useSelector((state) => state.userReducer);
   const loggedIn = useSelector((state) => state.authReducer.loggedIn);
   const dispatch = useDispatch();
-  // console.log(userdata.user);
+  const memberUpdate = useSelector((state) => state.adminReducer.memberUpdate);
+  const extendmember = userdata.user.membermonth + 6;
   useEffect(() => {
     dispatch(userAction.getuser());
-  }, [dispatch, userdata.userUpdate]);
+  }, [dispatch, userdata.userUpdate, memberUpdate]);
 
   return (
     <div className="USERPROFILE">
@@ -51,9 +53,48 @@ function UserProfile() {
                         {userdata.user.address}
                       </li>
                       <li className="list-group-item">
-                        <b>Mobile Number: </b>
+                        <b>Cell Number: </b>
                         {userdata.user.phone}
                       </li>
+                      <li className="list-group-item">
+                        <b>Membership Status: </b>
+                        {userdata.user.memberstatus ? 'Active' : 'Inactive'}
+                      </li>
+                      <li className="list-group-item">
+                        <b>Membership Ends On: </b>
+                        {}
+                      </li>
+                      {userdata.user.memberstatus ? (
+                        <button
+                          onClick={() => {
+                            dispatch(
+                              adminAction.changemember(
+                                userdata.user.id,
+                                !userdata.user.memberstatus,
+                              ),
+                            );
+                          }}
+                          type="button"
+                          className="btn btn-danger"
+                        >
+                          Deactivate Membership
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            dispatch(
+                              adminAction.changemember(
+                                userdata.user.id,
+                                !userdata.user.memberstatus,
+                              ),
+                            );
+                          }}
+                          type="button"
+                          className="btn btn-success text-right"
+                        >
+                          Activate Membership
+                        </button>
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -159,8 +200,10 @@ function UserProfile() {
                           <option value="DEFAULT" disabled>
                             Driver License State
                           </option>
-                          { Object.keys(states).map((key) => (
-                            <option key={key} value={states[key]}>{states[key]}</option>
+                          {Object.keys(states).map((key) => (
+                            <option key={key} value={states[key]}>
+                              {states[key]}
+                            </option>
                           ))}
                         </select>
                       </div>
@@ -203,6 +246,22 @@ function UserProfile() {
                           name="phone"
                           defaultValue={userdata.user.phone}
                           required
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col">
+                        <label className="form-check-label">
+                          Extend Membership for 6 months ?
+                        </label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="membermonth"
+                          placeholder="Extend Membership(Months)"
+                          name="membermonth"
+                          value={extendmember || ''}
                         />
                       </div>
                     </div>

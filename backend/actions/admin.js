@@ -1,4 +1,6 @@
-const { Location, Vehicletype, Vehicle } = require('../models/index');
+const {
+  User, Location, Vehicletype, Vehicle,
+} = require('../models/index');
 
 function addlocationHandler(req, res) {
   Location.create({
@@ -145,6 +147,37 @@ function editvehicleHandler(req, res) {
   });
 }
 
+function getmemebersHandler(req, res) {
+  User.findAll({
+    where: {
+      isAdmin: 0,
+    },
+    raw: true,
+    nest: true,
+  })
+    .then((result) => {
+      res.status(200).send(result);
+    },
+    (err) => {
+      res.status(400).send(err);
+    });
+}
+
+function editmemberHandler(req, res) {
+  User.update({
+    memberstatus: req.body.status,
+  }, {
+    where: {
+      id: req.body.id,
+    },
+  }).then(() => {
+    res.status(200).send('done');
+  },
+  (err) => {
+    res.status(400).send(err);
+  });
+}
+
 module.exports = {
   addlocationHandler,
   getLocationsHandler,
@@ -158,4 +191,6 @@ module.exports = {
   getvehicleHandler,
   deletevehicleHandler,
   editvehicleHandler,
+  getmemebersHandler,
+  editmemberHandler,
 };

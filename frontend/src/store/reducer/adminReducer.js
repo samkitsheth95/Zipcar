@@ -2,9 +2,11 @@ const initialState = {
   location: [],
   vehicletype: [],
   vehicle: [],
+  member: [],
   locationUpdate: false,
   vehicletypeUpdate: false,
   vehicleUpdate: false,
+  memberUpdate: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,6 +40,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         vehicle: action.payload,
+      };
+    case 'GETMEMBER':
+      return {
+        ...state,
+        member: action.payload,
+      };
+    case 'EDITMEMBER':
+      return {
+        ...state,
+        memberUpdate: !state.memberUpdate,
       };
     default:
       return {

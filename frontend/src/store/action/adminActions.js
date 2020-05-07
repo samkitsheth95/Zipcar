@@ -106,6 +106,19 @@ const editvehicle = (e, id) => (dispatch) => {
     });
 };
 
+const getmembers = () => (dispatch) => {
+  request.get('admin/getmemebers')
+    .then((res) => {
+      dispatch({ type: 'GETMEMBER', payload: res.data });
+    });
+};
+
+const changemember = (id, status) => (dispatch) => {
+  request.sendPost('admin/editmember', { id, status })
+    .then(() => {
+      dispatch({ type: 'EDITMEMBER' });
+    });
+};
 export default {
   addlocation,
   getlocations,
@@ -119,4 +132,6 @@ export default {
   getvehicle,
   deletevehicle,
   editvehicle,
+  getmembers,
+  changemember,
 };

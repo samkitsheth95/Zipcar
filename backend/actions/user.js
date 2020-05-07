@@ -45,7 +45,6 @@ function searchHandler(req, res) {
 }
 
 function makeBooking(req, res) {
-  console.log({ ...req.body });
   const startDate = new Date((new Date(req.body['select-date'])).getTime());
   const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
   Booking.findOne({

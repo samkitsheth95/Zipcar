@@ -6,6 +6,7 @@ const {
   editLocationsHandler, addVehicletypeHandler, getvehicletypeHandler,
   deletevehicletypeHandler, editvehicletypeHandler, addvehicleHandler,
   getvehicleHandler, deletevehicleHandler, editvehicleHandler,
+  getmemebersHandler, editmemberHandler,
 } = require('../actions/admin');
 
 app.post('/addlocation', addlocationHandler);
@@ -22,5 +23,8 @@ app.post('/addvehicle', addvehicleHandler);
 app.get('/getvehicle', getvehicleHandler);
 app.post('/deletevehicle', deletevehicleHandler);
 app.post('/editvehicle', editvehicleHandler);
+
+app.get('/getmemebers', getmemebersHandler);
+app.post('/editmember', editmemberHandler);
 
 module.exports = app;
