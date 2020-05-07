@@ -8,7 +8,9 @@ import './Booking.css';
 function Booking() {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.authReducer.loggedIn);
+  const isAdmin = useSelector((state) => state.authReducer.isAdmin);
   const bookings = useSelector((state) => state.userReducer.booking);
+  const bookingUpdate = useSelector((state) => state.userReducer.bookingUpdate);
   // var d = new Date(s)
   const options = {
     hour: 'numeric',
@@ -22,7 +24,7 @@ function Booking() {
   // console.log(bookings);
   useEffect(() => {
     if (loggedIn) dispatch(userAction.getbooking());
-  }, [dispatch, loggedIn]);
+  }, [dispatch, loggedIn, bookingUpdate]);
   return (
     <div className="BOOKING">
       <Header />
@@ -48,6 +50,10 @@ function Booking() {
                           <b>{booking.vehicle.rentallocation}</b>
                         </li>
                         <li className="list-group-item">
+                          Booking Status: &nbsp;
+                          <b>{booking.status}</b>
+                        </li>
+                        <li className="list-group-item">
                           From: &nbsp;
                           <b>
                             {new Date(booking.from).toLocaleString(
@@ -68,16 +74,42 @@ function Booking() {
                       </ul>
                       <br />
                       <div className="button text">
-                        <span className="md">
-                          <MdDelete />
-                        </span>
                         &nbsp;
-                        <button
-                          type="button"
-                          className="ridecomplete"
-                        >
-                          Ride Complete
-                        </button>
+                        {booking.status !== 'Booked' || isAdmin ? (
+                          ''
+                        ) : (
+                          <div>
+                            <MdDelete
+                              onClick={() => {
+                                dispatch(
+                                  userAction.deletebooking(booking.id, true),
+                                );
+                              }}
+                              onKeyDown={() => {
+                                dispatch(
+                                  userAction.deletebooking(booking.id, true),
+                                );
+                              }}
+                              className="md"
+                            />
+                            <button
+                              type="button"
+                              className="ridecomplete"
+                              onClick={() => {
+                                dispatch(
+                                  userAction.deletebooking(booking.id, false),
+                                );
+                              }}
+                              onKeyDown={() => {
+                                dispatch(
+                                  userAction.deletebooking(booking.id, false),
+                                );
+                              }}
+                            >
+                              Ride Complete
+                            </button>
+                          </div>
+                        )}
                       </div>
                       <br />
                     </div>

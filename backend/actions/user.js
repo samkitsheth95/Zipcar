@@ -45,6 +45,7 @@ function searchHandler(req, res) {
 }
 
 function makeBooking(req, res) {
+  console.log({...req.body})
   const startDate = new Date((new Date(req.body['select-date'])).getTime());
   const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
   Booking.findOne({
@@ -69,6 +70,7 @@ function makeBooking(req, res) {
         vehicleId: req.body.vehicleId,
         from: startDate,
         to: endDate,
+        status: 'Booked',
       }).then(() => {
         res.status(200).send({ res: 'Success' });
       });
@@ -78,21 +80,69 @@ function makeBooking(req, res) {
 
 
 function getBookingHandler(req, res) {
-  Booking.findAll({
-    where: { userId: req.user.id },
-    include: [Vehicle],
-    raw: true,
-    nest: true,
-  })
-    .then((result) => {
-      res.status(200).send(result);
+  if (!req.user.isAdmin) {
+    Booking.findAll({
+      where: { userId: req.user.id },
+      include: [Vehicle],
+      raw: true,
+      nest: true,
+    })
+      .then((result) => {
+        res.status(200).send(result);
+      },
+      (err) => {
+        res.status(400).send(err);
+      });
+  } else {
+    Booking.findAll({
+      include: [Vehicle],
+      raw: true,
+      nest: true,
+    })
+      .then((result) => {
+        res.status(200).send(result);
+      },
+      (err) => {
+        res.status(400).send(err);
+      });
+  }
+}
+
+function deleteBookingHandler(req, res) {
+  if (req.body.isDelete === 'true') {
+    Booking.update({
+      status: 'Cancelled',
+    }, {
+      where: {
+        id: req.body.id,
+      },
+    }).then(() => {
+      res.status(200).send('removed');
     },
     (err) => {
       res.status(400).send(err);
     });
-  // res.status(200).send({ ans: req.user.id });
+  } else {
+    Booking.update({
+      status: 'Ride Complete',
+    }, {
+      where: {
+        id: req.body.id,
+      },
+    }).then(() => {
+      res.status(200).send('removed');
+    },
+    (err) => {
+      res.status(400).send(err);
+    });
+  }
 }
 
 module.exports = {
-  updateHandler, getUserHandler, searchHandler, makeBooking, getBookingHandler,
+  updateHandler,
+  getUserHandler,
+  searchHandler,
+  makeBooking,
+  getBookingHandler,
+  deleteBookingHandler,
 };

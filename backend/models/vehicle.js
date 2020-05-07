@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes, User) => {
       type: DataTypes.DATE(),
       allowNull: false,
     },
+    status: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
   });
   Booking.belongsTo(User);
   Booking.belongsTo(Vehicle);

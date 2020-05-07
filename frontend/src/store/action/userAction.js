@@ -23,13 +23,12 @@ const search = (e) => (dispatch) => {
 const book = (ev, history) => (dispatch) => {
   ev.preventDefault();
   const { target } = ev;
-  request
-    .sendPost('user/book', target)
-    .then((res) => {
-      console.log(res.data);
+  request.sendPost('user/book', target)
+    .then(() => {
       target.reset();
       $('.modal').modal('hide');
       history.push('/booking');
+      dispatch({ type: 'SEARCHCLEAR' });
     })
     .catch((error) => {
       console.log(error.response.data.error);
@@ -38,9 +37,15 @@ const book = (ev, history) => (dispatch) => {
 
 const getbooking = () => (dispatch) => {
   request.get('user/getbooking').then((res) => {
-    // console.log(res.data);
     dispatch({ type: 'GETBOOKING', payload: res.data });
   });
+};
+
+const deletebooking = (id, isDelete) => (dispatch) => {
+  request.sendPost('user/deletebooking', { id, isDelete })
+    .then(() => {
+      dispatch({ type: 'UPDATEBOOKING' });
+    });
 };
 
 export default {
@@ -49,4 +54,5 @@ export default {
   search,
   book,
   getbooking,
+  deletebooking,
 };
