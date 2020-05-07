@@ -1,0 +1,18 @@
+.BOOKING .md {
+    cursor: pointer;
+    float: left;
+    color: red;
+    size: 25px;
+  }
+
+.BOOKING .ridecomplete {
+    cursor: pointer;
+    float: right;    
+    color: white; 
+    background-color: green;
+    font-size: 15px;
+  }
+
+.BOOKING .card-loca {
+    margin-top: 16px;
+}

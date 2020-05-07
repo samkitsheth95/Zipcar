@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { MdDelete } from 'react-icons/md';
 import userAction from '../../store/action/userAction';
 import Header from '../../common/Header/Header';
 import './Booking.css';
@@ -10,14 +11,20 @@ function Booking() {
   const bookings = useSelector((state) => state.userReducer.booking);
   // var d = new Date(s)
   const options = {
-    hour: 'numeric', minute: 'numeric', second: 'numeric', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
   // console.log(bookings);
   useEffect(() => {
     if (loggedIn) dispatch(userAction.getbooking());
   }, [dispatch, loggedIn]);
   return (
-    <div>
+    <div className="BOOKING">
       <Header />
       {loggedIn && (
         <div className="container">
@@ -42,13 +49,36 @@ function Booking() {
                         </li>
                         <li className="list-group-item">
                           From: &nbsp;
-                          <b>{(new Date(booking.from)).toLocaleString('en-US', options)}</b>
+                          <b>
+                            {new Date(booking.from).toLocaleString(
+                              'en-US',
+                              options,
+                            )}
+                          </b>
                         </li>
                         <li className="list-group-item">
                           To: &nbsp;
-                          <b>{(new Date(booking.to)).toLocaleString('en-US', options)}</b>
+                          <b>
+                            {new Date(booking.to).toLocaleString(
+                              'en-US',
+                              options,
+                            )}
+                          </b>
                         </li>
                       </ul>
+                      <br />
+                      <div className="button text">
+                        <span className="md">
+                          <MdDelete />
+                        </span>
+                        &nbsp;
+                        <button
+                          type="button"
+                          className="ridecomplete"
+                        >
+                          Ride Complete
+                        </button>
+                      </div>
                       <br />
                     </div>
                   </div>
