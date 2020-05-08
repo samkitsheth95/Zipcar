@@ -14,7 +14,7 @@ const locationMoldels = require('./location')(sequelize, Sequelize);
 const vehicletypeMoldels = require('./vehicleType')(sequelize, Sequelize);
 const vehicleMoldels = require('./vehicle')(sequelize, Sequelize, userMoldels.User);
 
-// sequelize.sync({ alter: true, force: false });
+ //sequelize.sync({ alter: true, force: false });
 
 module.exports = {
   ...userMoldels, ...locationMoldels, ...vehicletypeMoldels, ...vehicleMoldels,
