@@ -51,9 +51,12 @@ const getbooking = () => (dispatch) => {
   });
 };
 
-const deletebooking = (id, isDelete) => (dispatch) => {
+const deletebooking = (e, id, isDelete) => (dispatch) => {
+  const { target } = e;
   request.sendPost('user/deletebooking', { id, isDelete })
     .then(() => {
+      target.reset();
+      $('.modal').modal('hide');
       dispatch({ type: 'UPDATEBOOKING' });
     });
 };

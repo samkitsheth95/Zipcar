@@ -17,7 +17,7 @@ const login = (e, history) => (dispatch) => {
       if (res.data.isAdmin) dispatch({ type: 'ISADMIN' });
       dispatch({ type: 'LOGIN' });
       if (res.data.isAdmin) {
-        history.push('/adminHome');
+        history.push('/vehicletype');
       } else {
         history.push('/userHome');
       }

@@ -10,7 +10,7 @@ const port = 3001;
 dotenv.config();
 
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: [process.env.FRONTEND],
   credentials: true,
 }));
 
@@ -28,4 +28,5 @@ app.use(express.static('public'));
 
 app.use(require('./routes'));
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

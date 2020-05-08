@@ -62,8 +62,9 @@ function UserProfile() {
                       </li>
                       <li className="list-group-item">
                         <b>Membership Ends On: </b>
-                        {}
+                        {userdata.user.membershipEnds}
                       </li>
+                      <br />
                       {userdata.user.memberstatus ? (
                         <button
                           onClick={() => {
@@ -90,7 +91,7 @@ function UserProfile() {
                             );
                           }}
                           type="button"
-                          className="btn btn-success text-right"
+                          className="btn btn-success"
                         >
                           Activate Membership
                         </button>
@@ -251,7 +252,7 @@ function UserProfile() {
                     </div>
                     <div className="form-group row">
                       <div className="col">
-                        <label className="form-check-label">
+                        <label htmlFor="membermonth" className="form-check-label">
                           Extend Membership for 6 months ?
                         </label>
                         &nbsp; &nbsp; &nbsp; &nbsp;

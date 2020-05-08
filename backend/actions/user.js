@@ -2,18 +2,23 @@ const Sequelize = require('sequelize');
 const { User, Vehicle, Booking } = require('../models/index');
 
 function updateHandler(req, res) {
-  User.update({
-    ...req.body,
-  }, {
-    where: {
-      id: req.user.id,
+  User.update(
+    {
+      ...req.body,
     },
-  }).then((user) => {
-    res.status(200).send(user);
-  },
-  (err) => {
-    res.status(400).send(err);
-  });
+    {
+      where: {
+        id: req.user.id,
+      },
+    },
+  ).then(
+    (user) => {
+      res.status(200).send(user);
+    },
+    (err) => {
+      res.status(400).send(err);
+    },
+  );
 }
 
 function getUserHandler(req, res) {
@@ -21,52 +26,81 @@ function getUserHandler(req, res) {
     where: {
       id: req.user.id,
     },
-  }).then((user) => {
-    res.status(200).send(user);
-  },
-  (err) => {
-    res.status(400).send(err);
-  });
+    raw: true,
+  }).then(
+    (user) => {
+      const date = new Date(user.createdAt);
+      const membershipEnds = new Date(
+        date.setMonth(date.getMonth() + user.membermonth),
+      ).toDateString();
+      res.status(200).send({ ...user, membershipEnds });
+    },
+    (err) => {
+      res.status(400).send(err);
+    },
+  );
 }
 
 function searchHandler(req, res) {
   Vehicle.findAll({
     where: {
       ...req.body,
-      name: Sequelize.where(Sequelize.fn('LOWER', Sequelize.col('name')), 'LIKE', `%${req.body.name}%`),
+      name: Sequelize.where(
+        Sequelize.fn('LOWER', Sequelize.col('name')),
+        'LIKE',
+        `%${req.body.name}%`,
+      ),
     },
-  }).then((result) => {
-    // console.log(result);
-    res.status(200).send(result);
-  },
-  (err) => {
-    res.status(400).send(err);
-  });
+  }).then(
+    (result) => {
+      res.status(200).send(result);
+    },
+    (err) => {
+      res.status(400).send(err);
+    },
+  );
 }
 
 function makeBooking(req, res) {
-  const startDate = new Date((new Date(req.body['select-date'])).getTime());
-  const endDate = new Date(startDate.getTime() + (req.body['select-duration'] * 60 * 60 * 1000));
+  const startDate = new Date(new Date(req.body['select-date']).getTime());
+  const endDate = new Date(
+    startDate.getTime() + req.body['select-duration'] * 60 * 60 * 1000,
+  );
   Booking.findOne({
     where: {
       vehicleId: req.body.vehicleId,
       status: { [Sequelize.Op.notIn]: ['Cancelled', 'Ride Complete'] },
-      [Sequelize.Op.or]: [{
-        from: {
-          [Sequelize.Op.between]: [startDate, endDate],
+      [Sequelize.Op.or]: [
+        {
+          from: {
+            [Sequelize.Op.lte]: startDate,
+          },
+          to: {
+            [Sequelize.Op.gte]: startDate,
+          },
         },
-      },
-      {
-        to: {
-          [Sequelize.Op.between]: [startDate, endDate],
+        {
+          from: {
+            [Sequelize.Op.lte]: endDate,
+          },
+          to: {
+            [Sequelize.Op.gte]: endDate,
+          },
         },
-      }],
+      ],
     },
     nest: true,
     include: [Vehicle],
   }).then((bookings) => {
-    if (bookings) res.status(400).send({ error: 'Booking slot does not exist for the selected Vehicle.Plese choose from these similar options.', vehicleType: bookings.vehicle.dataValues.vehicletype });
-    else {
+    if (bookings) {
+      res
+        .status(400)
+        .send({
+          error:
+            'Booking slot does not exist for the selected Vehicle.Plese choose from these similar options.',
+          vehicleType: bookings.vehicle.dataValues.vehicletype,
+        });
+    } else {
       Booking.create({
         userId: req.user.id,
         vehicleId: req.body.vehicleId,
@@ -80,7 +114,6 @@ function makeBooking(req, res) {
   });
 }
 
-
 function getBookingHandler(req, res) {
   if (!req.user.isAdmin) {
     Booking.findAll({
@@ -88,55 +121,67 @@ function getBookingHandler(req, res) {
       include: [Vehicle],
       raw: true,
       nest: true,
-    })
-      .then((result) => {
+    }).then(
+      (result) => {
         res.status(200).send(result);
       },
       (err) => {
         res.status(400).send(err);
-      });
+      },
+    );
   } else {
     Booking.findAll({
       include: [Vehicle],
       raw: true,
       nest: true,
-    })
-      .then((result) => {
+    }).then(
+      (result) => {
         res.status(200).send(result);
       },
       (err) => {
         res.status(400).send(err);
-      });
+      },
+    );
   }
 }
 
 function deleteBookingHandler(req, res) {
   if (req.body.isDelete === 'true') {
-    Booking.update({
-      status: 'Cancelled',
-    }, {
-      where: {
-        id: req.body.id,
+    Booking.update(
+      {
+        status: 'Cancelled',
       },
-    }).then(() => {
-      res.status(200).send('removed');
-    },
-    (err) => {
-      res.status(400).send(err);
-    });
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+    ).then(
+      () => {
+        res.status(200).send('removed');
+      },
+      (err) => {
+        res.status(400).send(err);
+      },
+    );
   } else {
-    Booking.update({
-      status: 'Ride Complete',
-    }, {
-      where: {
-        id: req.body.id,
+    Booking.update(
+      {
+        status: 'Ride Complete',
       },
-    }).then(() => {
-      res.status(200).send('removed');
-    },
-    (err) => {
-      res.status(400).send(err);
-    });
+      {
+        where: {
+          id: req.body.id,
+        },
+      },
+    ).then(
+      () => {
+        res.status(200).send('removed');
+      },
+      (err) => {
+        res.status(400).send(err);
+      },
+    );
   }
 }
 

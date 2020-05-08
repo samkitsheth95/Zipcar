@@ -39,9 +39,6 @@ function Header() {
           { auth.loggedIn && auth.isAdmin && (
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink exact className="nav-link" activeClassName="active" to="/adminHome">Home</NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink exact className="nav-link" activeClassName="active" to="/vehicletype">Vehicle Type</NavLink>
             </li>
             <li className="nav-item">
@@ -49,9 +46,6 @@ function Header() {
             </li>
             <li className="nav-item">
               <NavLink exact className="nav-link" activeClassName="active" to="/vehicle">Vehicle</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink exact className="nav-link" activeClassName="active" to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="nav-item">
               <NavLink exact className="nav-link" activeClassName="active" to="/booking">Bookings</NavLink>

@@ -9,8 +9,6 @@ import Login from './common/Login/Login';
 import Register from './common/Register/Register';
 import UserHome from './user/UserHome/UserHome';
 import UserProfile from './user/UserProfile/UserProfile';
-import AdminHome from './admin/adminHome/adminHome';
-import Dashboard from './admin/adminDashboard/dashboard';
 import Locations from './admin/Locations/Locations';
 import Vehicletype from './admin/Vehicletype/Vehicletype';
 import Vehicle from './admin/Vehicle/Vehicle';
@@ -33,8 +31,6 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/userHome" component={UserHome} />
         <Route exact path="/userProfile" component={UserProfile} />
-        <Route exact path="/adminHome" component={AdminHome} />
-        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/locations" component={Locations} />
         <Route exact path="/vehicletype" component={Vehicletype} />
         <Route exact path="/vehicle" component={Vehicle} />

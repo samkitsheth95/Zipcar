@@ -80,34 +80,140 @@ function Booking() {
                         ) : (
                           <div>
                             <MdDelete
-                              onClick={() => {
-                                dispatch(
-                                  userAction.deletebooking(booking.id, true),
-                                );
-                              }}
-                              onKeyDown={() => {
-                                dispatch(
-                                  userAction.deletebooking(booking.id, true),
-                                );
-                              }}
                               className="md"
+                              data-toggle="modal"
+                              data-target="#myModal"
+                              size={28}
                             />
+                            <div
+                              className="modal fade"
+                              id="myModal"
+                              role="dialog"
+                            >
+                              <div className="modal-dialog">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h4 className="modal-title">
+                                      Please confirm your Action
+                                    </h4>
+                                    <button
+                                      type="button"
+                                      className="close"
+                                      data-dismiss="modal"
+                                    >
+                                      &times;
+                                    </button>
+                                  </div>
+                                  <div className="modal-body">
+                                    <form
+                                      className="form-signin"
+                                      onSubmit={(e) => {
+                                        e.preventDefault();
+                                        dispatch(
+                                          userAction.deletebooking(
+                                            e,
+                                            booking.id,
+                                            true,
+                                          ),
+                                        );
+                                      }}
+                                    >
+                                      <div className="form-group row">
+                                        <div className="col">
+                                          <p>
+                                            Are you sure you want to cancel your
+                                            booking ?
+                                            {' '}
+                                          </p>
+                                          <strong>Note:</strong>
+                                          <p>
+                                            If you cancel within 1 hour of ride
+                                            beginning you will be charged
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div className="form-group row">
+                                        <div className="col">
+                                          <button
+                                            type="submit"
+                                            className="btn btn-success"
+                                          >
+                                            Cancel Booking
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <button
                               type="button"
-                              className="ridecomplete"
-                              onClick={() => {
-                                dispatch(
-                                  userAction.deletebooking(booking.id, false),
-                                );
-                              }}
-                              onKeyDown={() => {
-                                dispatch(
-                                  userAction.deletebooking(booking.id, false),
-                                );
-                              }}
+                              className="btn btn-success ridecomplete"
+                              data-toggle="modal"
+                              data-target="#myModal3"
                             >
-                              Ride Complete
+                              Ride complete
                             </button>
+                            <div
+                              className="modal fade"
+                              id="myModal3"
+                              role="dialog"
+                            >
+                              <div className="modal-dialog">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h4 className="modal-title headercomplete">
+                                      Please confirm your Action
+                                    </h4>
+                                    <button
+                                      type="button"
+                                      className="close"
+                                      data-dismiss="modal"
+                                    >
+                                      &times;
+
+                                    </button>
+                                  </div>
+                                  <div className="modal-body">
+                                    <form
+                                      className="form-signin"
+                                      onSubmit={(e) => {
+                                        e.preventDefault();
+                                        dispatch(
+                                          userAction.deletebooking(
+                                            e,
+                                            booking.id,
+                                            false,
+                                          ),
+                                        );
+                                      }}
+                                    >
+                                      <div className="form-group row">
+                                        <div className="col">
+                                          <textarea
+                                            className="form-control"
+                                            id="Textarea"
+                                            rows="3"
+                                            placeholder="Feedback"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div className="form-group row">
+                                        <div className="col">
+                                          <button
+                                            type="submit"
+                                            className="btn btn-success"
+                                          >
+                                            Complete Ride
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         )}
                       </div>
