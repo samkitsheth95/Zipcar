@@ -40,7 +40,7 @@ function registerHandler(req, res) {
         isAdmin: (req.body.isAdmin === '1' ? 1 : 0),
         password: hash,
       }).then(() => {
-        res.send({ res: 'Success' });
+        res.send({ res: 'Success', isAdmin: req.body.isAdmin });
       }, () => {
         res.status(400).send({ res: 'Failed' });
       });

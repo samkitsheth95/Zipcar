@@ -32,7 +32,7 @@ function Vehicletype() {
               data-toggle="modal"
               data-target="#myModal"
             >
-              Add Vehicle
+              Add Vehicle Type
             </button>
           </div>
           <br />
