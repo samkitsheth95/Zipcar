@@ -2,28 +2,30 @@ import request from '../../helpers/communication';
 
 const register = (e, history) => (dispatch) => {
   request.sendPost('auth/register', e.target)
-    .then(() => {
+    .then((res) => {
+      if (res.data.isAdmin === '1') { dispatch({ type: 'ISADMIN' }); }
       dispatch({ type: 'REGISTER' });
       history.push('/login');
     })
-    .catch((error) => {
-      dispatch({ type: 'REGISTER_ERROR', payload: error.response.data });
+    .catch(() => {
+      dispatch({ type: 'REGISTER_ERROR' });
     });
 };
 
 const login = (e, history) => (dispatch) => {
   request.sendPost('auth/login', e.target)
     .then((res) => {
-      if (res.data.isAdmin) dispatch({ type: 'ISADMIN' });
-      dispatch({ type: 'LOGIN' });
       if (res.data.isAdmin) {
+        dispatch({ type: 'ISADMIN' });
+        dispatch({ type: 'LOGIN' });
         history.push('/vehicletype');
       } else {
+        dispatch({ type: 'LOGIN' });
         history.push('/userHome');
       }
     })
-    .catch((error) => {
-      dispatch({ type: 'LOGIN_ERROR', payload: error.response.data });
+    .catch(() => {
+      dispatch({ type: 'LOGIN_ERROR' });
     });
 };
 

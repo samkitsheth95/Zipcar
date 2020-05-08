@@ -122,8 +122,8 @@ function Register() {
                 className="form-control"
                 placeholder="Expiry Month"
                 name="expirymonth"
-                maxLength="2"
-                pattern="\d{2}"
+                min="01"
+                max="12"
                 required
               />
               <input
@@ -131,8 +131,8 @@ function Register() {
                 className="form-control"
                 placeholder="Expiry Year"
                 name="expiryyear"
-                maxLength="4"
-                pattern="\d{4}"
+                min="0001"
+                max="9999"
                 required
               />
               <input

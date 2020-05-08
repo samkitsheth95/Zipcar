@@ -57,7 +57,7 @@ function Vehicle() {
                           <h4>{vehicle.name}</h4>
                         </li>
                         <li className="list-group-item">
-                          Name:
+                          Vehicle Type:
                           &nbsp;
                           <b>{vehicle.vehicletype}</b>
                         </li>
