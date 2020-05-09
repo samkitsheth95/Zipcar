@@ -34,6 +34,8 @@ const logout = (isAdmin) => (dispatch) => {
     .then(() => {
       if (isAdmin) dispatch({ type: 'ISADMIN' });
       dispatch({ type: 'LOGOUT' });
+      dispatch({ type: 'SEARCHCLEAR' });
+      dispatch({ type: 'BOOKINGERR', payload: '' });
     });
 };
 

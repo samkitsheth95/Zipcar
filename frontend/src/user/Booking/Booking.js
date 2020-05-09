@@ -71,8 +71,19 @@ function Booking() {
                             )}
                           </b>
                         </li>
+                        {isAdmin && booking.user && (
+                          <div>
+                            <li className="list-group-item">
+                              Booked By(Name): &nbsp;
+                              <b>{booking.user.name}</b>
+                            </li>
+                            <li className="list-group-item">
+                              Booked By(Username): &nbsp;
+                              <b>{booking.user.username}</b>
+                            </li>
+                          </div>
+                        )}
                       </ul>
-                      <br />
                       <div className="button text">
                         &nbsp;
                         {booking.status !== 'Booked' || isAdmin ? (
@@ -172,7 +183,6 @@ function Booking() {
                                       data-dismiss="modal"
                                     >
                                       &times;
-
                                     </button>
                                   </div>
                                   <div className="modal-body">

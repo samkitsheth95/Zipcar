@@ -83,7 +83,6 @@ function Member() {
           </div>
         </div>
       )}
-      ;
     </div>
   );
 }

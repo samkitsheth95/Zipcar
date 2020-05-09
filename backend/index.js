@@ -30,5 +30,9 @@ app.use(express.static('public'));
 
 app.use(require('./routes'));
 
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
+
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

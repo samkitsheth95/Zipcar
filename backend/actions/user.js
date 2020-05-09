@@ -131,7 +131,7 @@ function getBookingHandler(req, res) {
     );
   } else {
     Booking.findAll({
-      include: [Vehicle],
+      include: [Vehicle, User],
       raw: true,
       nest: true,
     }).then(
