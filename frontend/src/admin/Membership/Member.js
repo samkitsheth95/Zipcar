@@ -19,35 +19,70 @@ function Member() {
       {loggedIn && isAdmin && (
         <div className="container">
           <br />
-          {members.map((member) => (
-            <ul className="list-group" key={member.id}>
-              <li className="list-group-item">
-                Name:
-                <strong>{member.name}</strong>
-                &nbsp; &nbsp; User Name:
-                <strong>{member.username}</strong>
-                &nbsp; &nbsp;
-                Membership Status:
-                {member.memberstatus ? (
-                  <strong>Active</strong>
-                ) : (
-                  <strong>Inactive</strong>
-                )}
-                {member.memberstatus ? (
-                  <button onClick={() => { dispatch(adminAction.changemember(member.id, !member.memberstatus)); }} type="button" className="btn btn-danger">
-                    Deactivate Membership
-                  </button>
-                ) : (
-                  <button onClick={() => { dispatch(adminAction.changemember(member.id, !member.memberstatus)); }} type="button" className="btn btn-success text-right">
-                    Activate Membership
-                  </button>
-                )}
-              </li>
-            </ul>
-          ))}
+          <div className="row">
+            {members.map((member) => (
+              <div key={member.id} className="col-sm-4">
+                <div className="card-loca card shadow-sm">
+                  <div className="card-body">
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">
+                        <h4>{member.username}</h4>
+                      </li>
+                      <li className="list-group-item">
+                        Name: &nbsp;
+                        <b>{member.name}</b>
+                      </li>
+                      <li className="list-group-item">
+                        Membership Status: &nbsp;
+                        <b>
+                          {member.memberstatus ? (
+                            <strong>Active</strong>
+                          ) : (
+                            <strong>Inactive</strong>
+                          )}
+                        </b>
+                      </li>
+                      <li className="list-group-item">
+                        {member.memberstatus ? (
+                          <button
+                            onClick={() => {
+                              dispatch(
+                                adminAction.changemember(
+                                  member.id,
+                                  !member.memberstatus,
+                                ),
+                              );
+                            }}
+                            type="button"
+                            className="btn btn-danger text"
+                          >
+                            Deactivate Membership
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              dispatch(
+                                adminAction.changemember(
+                                  member.id,
+                                  !member.memberstatus,
+                                ),
+                              );
+                            }}
+                            type="button"
+                            className="btn btn-success"
+                          >
+                            Activate Membership
+                          </button>
+                        )}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
-      ;
     </div>
   );
 }

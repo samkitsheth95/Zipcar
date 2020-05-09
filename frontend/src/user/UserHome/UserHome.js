@@ -47,7 +47,7 @@ function UserHome() {
             }}
           >
             <div className="form-group row">
-              <div className="col-sm-6">
+              <div className="col-md-6 mb-4 mb-md-0">
                 <input
                   type="text"
                   id="vehicle"
@@ -57,7 +57,7 @@ function UserHome() {
                   required
                 />
               </div>
-              <div className="col-sm-2">
+              <div className="col-md-2 mb-4 mb-md-0">
                 <select
                   className="form-control"
                   id="vehicletype"
@@ -78,7 +78,7 @@ function UserHome() {
                   ))}
                 </select>
               </div>
-              <div className="col-sm-2">
+              <div className="col-md-2 mb-4 mb-md-0">
                 <select
                   className="form-control"
                   id="rentallocation"
@@ -98,13 +98,13 @@ function UserHome() {
                   ))}
                 </select>
               </div>
-              <div className="col-sm-1">
+              <div className="col-md-1 col text-center">
                 <button type="submit" className="btn btn-success">
                   Search
                 </button>
               </div>
-              <div className="col-sm-1">
-                <input type="reset" value="Reset" className="btn btn-success" />
+              <div className="col-md-1 col text-center">
+                <input type="reset" value="Reset" className="btn btn-danger" />
               </div>
             </div>
           </form>
@@ -189,7 +189,7 @@ function UserHome() {
                           type="datetime-local"
                           className="form-control"
                           id="select-date"
-                          placeholder="Select Date and Time to rent"
+                          placeholder="Ride from:"
                           name="select-date"
                           min={minDate}
                           max={maxDate}
