@@ -9,8 +9,11 @@ We decided to use this tech-stack after careful consideration of the project req
 
 ## hosted on [Zipcar](http://zipcar-env.eba-ksiqic9p.us-east-2.elasticbeanstalk.com/) 
 
-## Running - the easiest way is to run would be to run the docker image we build, the link to the docker repo is provided below. Ubuntu command to run - sudo docker run -p 80:8080 -it image
+#### Running - the easiest way is to run would be to run the docker image we build, the link to the docker repo is provided below. Ubuntu command to run - sudo docker run -p 80:8080 -it image
 [Docker Link](https://hub.docker.com/r/samkitsheth95/zipcardock)
+
+#### link to [Scrum Reports](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/wiki)
+#### link to [Project Board](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/projects)
 
 ## Deployment With Extra Credit
 
@@ -50,4 +53,5 @@ All wireframes are created in pencil.
 ### Burndown
 [Burndown](https://docs.google.com/spreadsheets/d/1RBzwUDx9QG7Uy8ayiFBBuhWBaJCrK5dV5T9eN2ZEfp8/edit?usp=sharing
 ) 
-
+![Burndown](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/chart.png
+)
