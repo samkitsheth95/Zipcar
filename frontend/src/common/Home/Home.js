@@ -10,6 +10,7 @@ function Home() {
           className="mb"
           alt=""
           src="zipcar_name.png"
+          width="100%"
         />
       </div>
     </div>
