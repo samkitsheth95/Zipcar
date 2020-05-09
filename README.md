@@ -15,7 +15,10 @@ We decided to use this tech-stack after careful consideration of the project req
 ## Deployment With Extra Credit
 
 We Dockerizing our app for deployment. we utilized Elastic Beanstalk and deployed our docker to it. then we configured the AWS Auto Scaleing Group and added it to the Load Balancer. Config Image of the deployed app shown below:-
-### Deployment Image
-### Config
+#### Deployment Image
+![Deployment Image](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/deployment_diagram.png)
+#### Config
+![AWS Config](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/awsconfig.png)
+
 ## Wireframe for all pages(UI)
 
