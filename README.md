@@ -23,6 +23,9 @@ We Dockerizing our app for deployment. we utilized Elastic Beanstalk and deploye
 #### Config
 ![AWS Config](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/awsconfig.png)
 
+
+**Frontend testing done with Enzyme, backend testing done with Mocha chai after the app was deployed we had run the jmeter testing**
+
 ## Wireframe for all pages(UI)
 All wireframes are created in pencil.
 #### Login
