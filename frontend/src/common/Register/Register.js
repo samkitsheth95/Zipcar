@@ -50,7 +50,7 @@ function Register() {
             placeholder="Password"
             required
           />
-          <span className="mr-5">Are you a admin?</span>
+          <span className="mr-5">Are you an admin?</span>
           <div className="form-check form-check-inline">
             <label className="form-check-label" htmlFor="companyRadio1">
               <input
