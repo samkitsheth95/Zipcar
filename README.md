@@ -21,4 +21,33 @@ We Dockerizing our app for deployment. we utilized Elastic Beanstalk and deploye
 ![AWS Config](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/awsconfig.png)
 
 ## Wireframe for all pages(UI)
+All wireframes are created in pencil.
+#### Login
+![Login](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/login.png)
+#### Register User
+![Register](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/register_page_user.png)
+#### Register Admin
+![Register](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/register_page_admin.png)
+#### Userhome
+![Userhome](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/user_home.png)
+#### User Search Vehicles
+![User Search](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/user_search_vehicles.png)
+#### User Booking
+![User Booking](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/user_see_booking.png)
+#### User Profile
+![User](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/user_see_profile.png)
+#### Admin Add Location
+![Admin](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_add_location.png)
+#### Admin Add Vehicletype
+![Admin Vehicletype](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_add_vehicle_type.png)
+#### Admin Add Vehicle
+![Admin Vehicle](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_add_vehicle.png)
+#### Admin Booking
+![Admin Booking](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_see_booking.png)
+#### Admin Members
+![Admin Member](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_see_members.png)
+
+### Burndown
+[Burndown](https://docs.google.com/spreadsheets/d/1RBzwUDx9QG7Uy8ayiFBBuhWBaJCrK5dV5T9eN2ZEfp8/edit?usp=sharing
+) 
 
