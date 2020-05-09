@@ -7,13 +7,15 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3001;
+app.use(express.static('public'))
+
+const port = process.env.PORT || 3000;
 dotenv.config();
 
-app.use(cors({
-  origin: [process.env.FRONTEND],
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: [process.env.FRONTEND],
+//   credentials: true,
+// }));
 
 app.use(session({
   secret: 'keyboard cat',
