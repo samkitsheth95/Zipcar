@@ -83,7 +83,7 @@ All wireframes are created with the [Pencil Project](https://pencil.evolus.vn/ "
 ![Admin Member](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/admin_see_members.png)
 
 ### Burndown
-[Burndown](https://docs.google.com/spreadsheets/d/1RBzwUDx9QG7Uy8ayiFBBuhWBaJCrK5dV5T9eN2ZEfp8/edit?usp=sharing
+[Burndown](https://docs.google.com/spreadsheets/d/1WL5dxVLR9GMsYNqNbj2FRq8CIRHAC-omYwU8KmFcPrc/edit?usp=sharing
 ) 
 ![Burndown](https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-enigma/blob/master/Diagram/chart.png
 )
